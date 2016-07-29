@@ -48,8 +48,8 @@ else
                 
                 <!-- 已會員登入， 網站可以連結 -->
                 <?php if ($sUserName != "Guest"): ?>
-                 <li class="active"><a href="index.php">Home</a></li>
-                 <li ><a href="view.php">View</a></li>
+                 <li class="active"><a href="index">Home</a></li>
+                 <li ><a href="view/view">View</a></li>
                  <li ><a href="travel.php">My Travel</a></li>
                  <li ><a href="achievement.php">My Achievement</a></li>
                  <li ><a href="contact.php">Forum</a></li>

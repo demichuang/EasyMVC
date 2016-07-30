@@ -5,6 +5,8 @@ if (isset($_SESSION["userName"]))
 // 如果$_SESSION['userName']不存在
 else                                    
   $sUserName = "Guest";                 // $sUserName設為"Guest"(訪客)
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +39,7 @@ else
         
         <!-- 尚未登入時，顯示註冊連結 -->
         <?php if ($sUserName == "Guest"): ?>
-         <a class="navbar-brand active" href="/EasyMVC/index/gosignup"><h2>Sign Up</h2></a>
+         <a class="navbar-brand active" href="gosignup"><h2>Sign Up</h2></a>
         <!-- 已登入時，顯示使用者名稱 -->
         <?php else: ?>
          <a class="navbar-brand active"><h2><?php echo $sUserName?></h2></a>
@@ -50,10 +52,10 @@ else
                 <?php if ($sUserName != "Guest"): ?>
                  <li class="active"><a href="index">Home</a></li>
                  <li ><a href="view/view">View</a></li>
-                 <li ><a href="travel.php">My Travel</a></li>
-                 <li ><a href="achievement.php">My Achievement</a></li>
-                 <li ><a href="contact.php">Forum</a></li>
-                 <li ><a href="index.php?logout=1">Logout</a></li>
+                 <li ><a href="travel/travel">My Travel</a></li>
+                 <li ><a href="achievement/achievement">My Achievement</a></li>
+                 <li ><a href="contact/contact">Forum</a></li>
+                 <li ><a href="index">Logout</a></li>
                 <?php endif; ?> 
                 
                 <!-- 尚未登入前點選其他頁面的連結，傳id=1值給原頁面(index.php)，顯示要先登入 -->
@@ -124,13 +126,13 @@ else
     <?php endif; ?>
     
     <!-- 得id=3值，顯示本來就是會員了，登入即可 -->
-    <?php if ($data===3):?> 
+    <?php if ($data==3):?> 
       <h4 class="text-center  wowload fadeInUp">You are already a member.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h>
     <?php endif; ?>
     
     <!-- 得id=5值，顯示現在是會員了，請登入 -->
-    <?php if ($data===5):?> 
+    <?php if ($data==5):?> 
       <h4 class="text-center  wowload fadeInUp">You are a member now.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h4>
     <?php endif; ?>

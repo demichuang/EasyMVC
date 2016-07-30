@@ -40,7 +40,7 @@ class viewController extends Controller {
     
     $additem=$_GET['additem'];
     
-    $addtaic=$this->model("sqlcommandModel");
+    $addtaic=$this->model("sqlcommand");
 	$result =$addtaic->cadd($additem);
     
     
@@ -48,7 +48,7 @@ class viewController extends Controller {
     // 如果景點未被使用者加入
     if($row['additem']=="0")
     {
-        $updatetaic=$this->model("sqlcommandModel");
+        $updatetaic=$this->model("sqlcommand");
 		$result =$updatetaic->caddupdate($additem);
     }
   }
@@ -57,12 +57,12 @@ class viewController extends Controller {
   {
     $additem=$_GET['additem'];
     
-    $addtain=$this->model("sqlcommandModel");
+    $addtain=$this->model("sqlcommand");
 	$result =$addtain->nadd($additem);
     // 如果景點未被使用者加入
     if($row['additem']=="0"){
           
-        $updatetain=$this->model("sqlcommandModel");
+        $updatetain=$this->model("sqlcommand");
 		$result =$updatetain->naddupdate($additem);
     }
   }
@@ -115,7 +115,7 @@ class viewController extends Controller {
 	
 	
 	function seeclick(){
-	  $seeclick=$this->model("sqlcommandModel");
+	  $seeclick=$this->model("sqlcommand");
 		$result =$seeclick->see($id);
 		while($row =mysqli_fetch_array($result))
     {

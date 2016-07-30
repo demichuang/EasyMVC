@@ -152,12 +152,12 @@ if(($_GET['gone'])!="")
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                 
-                 <li ><a href="index.php">Home</a></li>
-                 <li class="active"><a href="view.php">View</a></li>
-                 <li ><a href="travel.php">My Travel</a></li>
-                 <li ><a href="achievement.php">My Achievement</a></li>
-                 <li ><a href="contact.php">Forum</a></li>
-                 <li ><a href="index.php?logout=1">Logout</a></li>
+                 <li ><a href="index">Home</a></li>
+                 <li class="active"><a href="view">View</a></li>
+                 <li ><a href="travel">My Travel</a></li>
+                 <li ><a href="achievement">My Achievement</a></li>
+                 <li ><a href="contact">Forum</a></li>
+                 <li ><a href="index">Logout</a></li>
                
               </ul>
             </div>

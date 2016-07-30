@@ -260,8 +260,61 @@ else{
         
         
     }
+    
+    function mylist(){
+            
+        // 如果點選"Taichung按鈕"            
+if($_SESSION['ds']=="0")
+    // 從file資料表內取username加入的景點的資料
+    $cmd="SELECT * FROM file 
+            WHERE username ='{$_SESSION['userName']}' 
+            AND additem ='1'"; 
+// 如果點選"Tainan按鈕"
+else
+    // 從file2資料表內取username加入的景點的資料 
+   $cmd="SELECT * FROM file2 
+        WHERE username ='{$_SESSION['userName']}' 
+        AND additem ='1'"; 
+   
+   $db=new connect_db();
+   $result=$db->connect($cmd);
+  // $num=mysqli_num_rows($result);
+   return $result;
+    
 }
-?>
-    
-    
 
+    function showedit(){
+        
+        
+        $cmd="SELECT * FROM user
+                WHERE username='{$_SESSION['userName']}'";
+        $db=new connect_db();
+        $result=$db->connect($cmd);
+        $row=mysqli_fetch_array($result);
+        
+        
+        if($_SESSION['ds']=="0")
+            return $row['edit'];
+        else
+            return $row['edit2'];
+        
+    }
+    
+    
+    function myedit(){
+        $cmd="SELECT * FROM user 
+                    WHERE username='{$_SESSION['userName']}'";
+        $db=new connect_db();
+        $result=$db->connect($cmd);
+        $row=mysqli_fetch_array($result);
+        
+        if($_SESSION['ds']=="0")
+            $edit = ereg_replace("<br />", "", $row['edit']);
+            
+        else
+            $edit = ereg_replace("<br />", "", $row['edit2']);
+        return $edit;
+    }
+}
+
+?>

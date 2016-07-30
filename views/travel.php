@@ -50,19 +50,19 @@ function initMap()
     // 地圖中心位置
     var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
-            center:  new google.maps.LatLng('<?php echo $data['lat'] ?>','<?php echo $data['lng']?>')
+            center:  new google.maps.LatLng('<?php echo $data[0]?>','<?php echo $data[1]?>')
     });
     
     // 地圖標記位置
     var marker = new google.maps.Marker({
-    		position : new google.maps.LatLng('<?php echo $data['lat'] ?>','<?php echo $data['lng']?>')
+    		position : new google.maps.LatLng('<?php echo $data[0] ?>','<?php echo $data[1]?>')
     });
 		
 	marker.setMap(map);     // 標記設定
 
 	// 標記訊息顯示
 	var infowindow = new google.maps.InfoWindow({
-			content : '<?php $data['mark'] ?>'
+			content : '<?php echo $data[2] ?>'
 	});
     
     // 開啟地圖、標記
@@ -155,7 +155,7 @@ echo "<div class='overlay spacer'>
 <?php        
 echo "    <h3>Your list：</h3>
             <div class='row text-center'>";
-            
+ /*           
 // 如果點選"Taichung按鈕"            
 if($_SESSION['ds']=="0")
     // 從file資料表內取username加入的景點的資料 
@@ -168,18 +168,20 @@ else
     $result=mysqli_query($conn,"SELECT * FROM $Table_file2 
                                 WHERE username ='{$_SESSION['userName']}' 
                                 AND additem ='1'"); 
+
 // 列出加入的景點名稱
 if(mysqli_num_rows($result)>0){
-    while($row =mysqli_fetch_array($result))
-    {
-        echo "<h4>{$row['dname']}";                                     // 印出景點名稱    
-        echo "<a href='travel_done.php?del={$row['dnum']}'>delete</a>"; // 刪除景點      
+
+    while($data2[0])
+    {*/
+        echo "<h4>{$data2[0]}";                                     // 印出景點名稱    
+        echo "<a href='travel_done.php?del={$data2[1]}'>delete</a>"; // 刪除景點      
         echo "</h4>";       
-    }
+ //   }
     echo"</div>
         </div>
        </div>";
-}
+
 ?>
 <!-- List Ends -->
 
@@ -193,23 +195,23 @@ if(mysqli_num_rows($result)>0){
             
         <?php
         // 從user資料表資料表內取與username對應的資料
-        $result2=mysqli_query($conn,"SELECT * FROM $Table_user
+       /* $result2=mysqli_query($conn,"SELECT * FROM $Table_user
                                     WHERE username='{$_SESSION['userName']}'");
         // 取每筆資料        
         while($row2 =mysqli_fetch_array($result2)){
                 // 如果點選"Taichung按鈕"
                 if($_SESSION['ds']=="0")
                 {
-                  echo "<h4>{$row2['edit']}</h4>";                                                  // 印出Taichung計畫
+                  echo "<h4>{$data3}</h4>";                                                  // 印出Taichung計畫
                   echo "<h5><a href='travel_edit.php?edit={$_SESSION['userName']}'>edit</a><h5>";   // 編輯Taichung計畫   
-                }
+            //    }
                 // 如果點選"Tainan按鈕"
-                else
-                {
-                  echo "<h4>{$row2['edit2']}</h4>";                                                 // 印出Tainan的計畫
-                  echo "<h5><a href='travel_edit.php?edit2={$_SESSION['userName']}'>edit</a><h5>";  // 印出Tainan的計畫
-                }
-        }
+            //    else
+              //  {*/
+                  echo "<h4>{$data3}</h4>";                                                 // 印出Tainan的計畫
+                  echo "<h5><a href='/EasyMVC/travel/goedit'>edit</a><h5>";  // 印出Tainan的計畫
+              //  }
+       // }
         ?>
       
          </div>

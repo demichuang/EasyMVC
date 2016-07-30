@@ -51,7 +51,7 @@ else
                 <!-- 已會員登入， 網站可以連結 -->
                 <?php if ($sUserName != "Guest"): ?>
                  <li class="active"><a href="index">Home</a></li>
-                 <li ><a href="view/view">View</a></li>
+                 <li ><a href="newview/newview">View</a></li>
                  <li ><a href="travel/travel">My Travel</a></li>
                  <li ><a href="achievement/achievement">My Achievement</a></li>
                  <li ><a href="contact/contact">Forum</a></li>
@@ -60,7 +60,7 @@ else
                 
                 <!-- 尚未登入前點選其他頁面的連結，傳id=1值給原頁面(index.php)，顯示要先登入 -->
                 <?php if ($sUserName == "Guest"): ?>
-                 <li class="active"><a href="index">Home</a></li>
+                 <li class="active"><a href="/EasyMVC/index">Home</a></li>
                  <li ><a href="/EasyMVC/index/nologin">View</a></li>
                  <li ><a href="/EasyMVC/index/nologin">My Travel</a></li>
                  <li ><a href="/EasyMVC/index/nologin">My Achievement</a></li>

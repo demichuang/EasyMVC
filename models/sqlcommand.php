@@ -191,8 +191,7 @@ class sqlcommand{
 
     }
     
-    
-    
+
     function see($id){
         if($_SESSION['dst']=="0"){
             $cmd= "SELECT * FROM dst
@@ -213,6 +212,53 @@ else{
 }
 // 呼叫dst資料
 
+    }
+
+    function showpicture(){
+    if($_SESSION['dst']=="0")   
+        $cmd="SELECT * FROM file
+            WHERE username='{$_SESSION['userName']}'";
+        
+    else                              
+  //從file2資料表內取與username對應的資料
+  $cmd="SELECT * FROM file2
+        WHERE username='{$_SESSION['userName']}'";    
+    
+    
+    
+    $db =new connect_db();
+    $result=$db->connect($cmd);
+    return $result;
+    
+    
+    
+    
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function ds($num){
+        
+        $_SESSION["ds"]=$num; 
+        
+        
+        $cmd= "SELECT *FROM dstaddress 
+                                WHERE d=$num";
+    	
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+    	$row=mysqli_fetch_array($result);
+    	return $row;
+    	
+        
+        
     }
 }
 ?>

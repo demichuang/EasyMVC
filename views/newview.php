@@ -152,12 +152,12 @@ if(($_GET['gone'])!="")
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                 
-                 <li ><a href="index">Home</a></li>
-                 <li class="active"><a href="view">View</a></li>
-                 <li ><a href="travel">My Travel</a></li>
-                 <li ><a href="achievement">My Achievement</a></li>
-                 <li ><a href="contact">Forum</a></li>
-                 <li ><a href="index">Logout</a></li>
+                 <li ><a href="../index">Home</a></li>
+                 <li class="active"><a href="/EasyMVC/newview/newview">View</a></li>
+                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+                 <li ><a href="/EasyMVC/achievement/achievement">My Achievement</a></li>
+                 <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
+                 <li ><a href="../index">Logout</a></li>
                
               </ul>
             </div>
@@ -218,6 +218,7 @@ echo "<div class='highlight-info'>
 
 <?php
 // 如果點選"Taichung按鈕"
+/*
 if($_SESSION['dst']=="0")
   //從file資料表內取與username對應的資料
   $result=mysqli_query($conn,"SELECT * FROM $Table_file 
@@ -226,19 +227,19 @@ if($_SESSION['dst']=="0")
 else                              
   //從file2資料表內取與username對應的資料
   $result=mysqli_query($conn,"SELECT * FROM $Table_file2
-                              WHERE username='{$_SESSION['userName']}'");
-  // 取每筆資料
+                             WHERE username='{$_SESSION['userName']}'");
+*/  // 取每筆資料
   while($row = mysqli_fetch_array($result)){
     echo "<figure class='effect-oscar  wowload fadeInUp' >";
     
     // 如果點選"Taichung按鈕"
-    if($_SESSION['dst']=="0")
+  //  if($_SESSION['dst']=="0")
       //顯示Taichung景點圖片
-      echo "<img name ='face'src='images/portfolio/0{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
+ //     echo "<img name ='face'src='images/portfolio/0{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
     // 如果點選"Tainan按鈕"
-    else
+ //   else
       //顯示Tainan景點圖片
-      echo "<img name ='face'src='images/portfolio/1{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
+      echo "<img name ='face'src='images/portfolio/$data}.jpg' width='500' height='300'alt='img01'/>";
     
     //顯示景點名字
     echo "<figcaption>

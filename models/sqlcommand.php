@@ -315,6 +315,22 @@ else
             $edit = ereg_replace("<br />", "", $row['edit2']);
         return $edit;
     }
+    
+    
+    function getedit($word){
+        
+        if($_SESSION['ds']=="0")
+            $cmd="UPDATE user SET edit ='$word'
+                WHERE username='{$_SESSION['userName']}'";
+            
+        else
+            $cmd="UPDATE user SET edit2 ='$word'
+                WHERE username='{$_SESSION['userName']}'";
+        $db=new connect_db();
+        $db->connect($cmd);
+        
+        
+    }
 }
 
 ?>

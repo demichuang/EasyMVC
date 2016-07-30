@@ -1,11 +1,5 @@
 <?php
-header('Content-type: text/html; charset=utf-8');   //使用萬用字元碼utf-8
-include_once("mysql.php");                          // 連結資料庫new
-$Table_file="file";      // 取file資料表(影響：delete按鈕，no按鈕)
-$Table_user="user";      // 取user資料表(影響：edit按鈕)
-$Table_file2="file2";    // 取file2資料表(影響：delete按鈕，no按鈕)
-
-session_start();    // 啟動session(使用：$_SESSION['userName']，$_SESSION["ds"])
+/*
 
 // 如果有規劃資料
 if(!empty($_POST['word']))
@@ -26,7 +20,7 @@ if(!empty($_POST['word']))
     header('Location:travel.php');      // 跳轉頁面(travel.php)
 }
 
-
+*/
 // 點選"delete按鈕"
 if(($_GET['del'])!="")
 {

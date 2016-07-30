@@ -12,6 +12,14 @@ $lat = $row['lat'];                // 取經度
 $lng = $row['lng'];                // 取緯度
 $mark = $row['mark'];  
  // 取資料
+  if(!empty($_POST['word']))
+{
+    $word = ereg_replace("\n", "<br />\n", $_POST['word']); // 將換行轉成資料庫存取的換行符號
+    $getword=$this->model("sqlcommand");
+    $getword->getedit($word);
+
+}
+
 
 
 
@@ -20,6 +28,11 @@ $result =$mylist->mylist();
 
 $myedit=$this->model("sqlcommand");
 $row2 =$myedit->showedit();
+
+
+
+
+
 
 
 // 列出加入的景點名稱
@@ -34,7 +47,10 @@ $this->view("travel",[$lat,$lng,$mark],[$row['dname'],$row['dnum']],$row2);
         
 
 function goedit(){
-  $this->view("travel_edit");
+$echoedit=$this->model("sqlcommand");
+$edit =$echoedit->myedit();
+
+$this->view("travel_edit",$edit);
 }
 
 
@@ -81,14 +97,12 @@ $this->view("travel",[$lat,$lng,$mark],[$row['dname'],$row['dnum']],$row2);
 
 
 
-function edit(){
-  
-$echoedit=$this->model("sqlcommand");
-$edit =$echoedit->myedit();
 
-$this->view("travel_edit",$edit);
 
-}
+
+
+
+
 
 
 

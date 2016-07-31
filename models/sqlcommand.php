@@ -1,6 +1,4 @@
 <?php
-// include("/EasyMVC/models/connect_db.php");
-// $db=new connect_db();
 
 class sqlcommand{
 

@@ -3,64 +3,46 @@
 class indexController extends Controller {
     
     
-    function index() {
+    function index(){
         $this->view("index");
-    }
-    
-    /*
-    function hello($name) {
-       // $user = $this->model("User");
-        //$user->name = $name;
-        $this->view("index", $user);
-        // echo "Hello! $user->name";
-    }
-    */
+    }       //到首頁(登入頁)
+
     function gosignup() {
         $this->view("index_sign");
-    }
-    
-    
-    
-    
-    
-    function user(){
-        
-    }
+    }   //到註冊頁
     
     function nologin(){
-        $this->view("index",1);
+        $this->view("index",1); //回登入頁並顯示需先登入
+    }     //未登入前點其他連結
+    
+    function login(){
+        $user=$_POST["txtUserName"];
+        $password=$_POST['txtPassword'];
+    
+    	$login=$this->model("sqlcommand");
+    	$row =$login->logincheck($user,$password);
+    
+      // 登入成功(如果輸入的username非空值，且user資料表內有一筆相符的資料)
+     	if (trim($user) !="" & $row == 1)       
+    	{
+    		$_SESSION["userName"]=$user;    // $_SESSION['userName']設為輸入的username
+    		$this->view("index");                  // 跳轉回到原頁面(index.php)
+    		                                      // 離開php程式
+    	}
+    //	登入失敗
+    	else                                    
+    	{
+    	  $_SESSION["userName"]="Guest";        // $_SESSION["userName"]設為"Guest"
+      	
+      	$this->view("index",2);   // 跳轉回到原頁面(index.php)，傳id=2值，顯示輸入錯誤或不是會員
+      	                             // 離開php程式
+    // 	}
+            
+        
+        
     }
     
-    function login()
-    {
-        // 檢查user資料表內是否有與輸入的username和userpassword相符的資料
-$user=$_POST["txtUserName"];
-$password=$_POST['txtPassword'];
-
-	$login=$this->model("sqlcommand");
-	$row =$login->logincheck($user,$password);
-
-  // 登入成功(如果輸入的username非空值，且user資料表內有一筆相符的資料)
- 	if (trim($user) !="" & $row == 1)       
-	{
-		$_SESSION["userName"]=$user;    // $_SESSION['userName']設為輸入的username
-		$this->view("index");                  // 跳轉回到原頁面(index.php)
-		                                      // 離開php程式
-	}
-//	登入失敗
-	else                                    
-	{
-	  $_SESSION["userName"]="Guest";        // $_SESSION["userName"]設為"Guest"
-  	
-  	$this->view("index",2);   // 跳轉回到原頁面(index.php)，傳id=2值，顯示輸入錯誤或不是會員
-  	                             // 離開php程式
-// 	}
-        
-        
-        
-    }
-    
-}
+}       //點登入按鈕
 
 function logout(){
     

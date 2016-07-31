@@ -1,64 +1,65 @@
 <?php
 
-class sqlcommand{
+class sqlcommand extends connect_PDO{
 //首頁
     // 從user資料表取與輸入的username和userpassword相符的資料      
     function logincheck($user,$password){
-        $cmd="SELECT * FROM user 
-              WHERE username='$user' 
-              AND userpassword='$password'";
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-    	
-    	$num=mysqli_num_rows($result);
-    	return $num;    // 回傳資料筆數
+        $cmd="SELECT * FROM 'user' 
+              WHEREz `username`='$user' 
+              AND `userpassword`='$password'";
+ 
+    	$result=$this->db->query($cmd);
+    //	$result = $login->fetch();
+    	$row=$result->rowcount();
+    	return $row;    // 回傳資料筆數
     }
     
     // 從user資料表取與輸入的新username相符的資料
     function signupcheck($newuser){
-        $cmd="SELECT * FROM user 
-              WHERE username='$newuser'";
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        
+        $cmd="SELECT * FROM 'user' 
+              WHERE `username`='$newuser'";
+    	
+    	$signup=$this->$db->query($cmd);
+    	$result = $signup->f;
     	return $result; // 回傳結果
     }
     
     // 新增新使用者的資料
     function adduser($newuser,$newpassword){
-        $cmd="INSERT user(username,userpassword)  
+        $cmd="INSERT 'user'('username','userpassword')  
               VALUES('$newuser','$newpassword')";       
-    	$db =new connect_db();
-    	$db->connect($cmd);
+    	//$db =new connect_db();
+    	$this->$db->query($cmd);
     	
     	
-    	$cmd1="SELECT * FROM dst 
-    	       WHERE d=1";
-    	$db1 =new connect_db();
-    	$result1=$db1->connect($cmd1);
+    	$cmd1="SELECT * FROM 'dst' 
+    	       WHERE 'd'='1'";
+    	//$db1 =new connect_db();
+    	$result1=$this->$db->query($cmd1);
     
     	while($row = mysqli_fetch_array($result1))
 	    {
-	        $cmd2="INSERT file(username,dnum,dname,additem,gone)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}',0,0)";
-    	    $db2 =new connect_db();
-    	    $db2->connect($cmd2);
+	        $cmd2="INSERT 'file'('username','dnum','dname','additem','gone')
+	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+    	   // $db2 =new connect_db();
+    	    $this->$db->query($cmd2);
 	    }
 	    
 	    
-	    $cmd3="SELECT * FROM dst 
-	           WHERE d=2";
-    	$db3 =new connect_db();
-    	$result2=$db3->connect($cmd3);
+	    $cmd3="SELECT * FROM 'dst' 
+	           WHERE 'd'='2'";
+    	//$db3 =new connect_db();
+    	$result2=$this->$db->query($cmd3);
     
     	while($row = mysqli_fetch_array($result2))
 	    {
-	        $cmd4="INSERT file2(username,dnum,dname,additem,gone)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}',0,0)";
-        	$db4 =new connect_db();
-        	$db4->connect($cmd4);
+	        $cmd4="INSERT 'file2'('username','dnum','dname','additem','gone')
+	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+        //	$db4 =new connect_db();
+        	$this->$db->query($cmd4);
 	    } 
 	  
+	    return;
     }
     
     

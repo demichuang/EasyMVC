@@ -39,7 +39,7 @@ else
         
         <!-- 尚未登入時，顯示註冊連結 -->
         <?php if ($sUserName == "Guest"): ?>
-         <a class="navbar-brand active" href="gosignup"><h2>Sign Up</h2></a>
+         <a class="navbar-brand active" href="/EasyMVC/index/gosignup"><h2>Sign Up</h2></a>
         <!-- 已登入時，顯示使用者名稱 -->
         <?php else: ?>
          <a class="navbar-brand active"><h2><?php echo $sUserName?></h2></a>

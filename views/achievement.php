@@ -50,11 +50,12 @@
 <!-- Header Ends -->
 
 
+<!-- 取Taichung去過的景點 -->
+<div class='overlay spacer'>
+  <div class='container'>
+    <div class='row text-center'>
+        
 <?php
-echo "<div class='overlay spacer'>
-        <div class='container'>
-          <div class='row text-center'>";
-
 // 取Taichung去過的景點          
 //if($gone>0){
     // 取每筆資料
@@ -64,50 +65,51 @@ echo "<div class='overlay spacer'>
         echo "<a href='travel_done.php?gone={$row['dname']}'>no</a>";   // 刪除景點
         echo "</h4>";       
     }
-    echo"</div>
-        </div>
-       </div>";
-//}
+?>
+    </div>
+  </div>
+</div>
 
-// 印出Taichung的%
-echo "<div class='highlight-info'>
-        <div class='container'>
-          <div class='row text-center  wowload fadeInDownBig'> 
-            <h4>Taichung：complete $data[1] %</h4>
-          </div>
-        </div>
-     </div>";
+<!-- 印出Taichung% -->
+<div class='highlight-info'>
+  <div class='container'>
+    <div class='row text-center  wowload fadeInDownBig'> 
+      <h4>Taichung：complete <?php echo $data[1] ?>%</h4>
+    </div>
+  </div>
+</div>
 
 
+<!-- 取Tainan去過的景點 -->
+<div class='overlay spacer'>
+  <div class='container'>
+    <div class='row text-center'>
 
- 
-echo "<div class='overlay spacer'>
-        <div class='container'>
-          <div class='row text-center'>";
+<?php
+
 // 取Tainan去過的景點 
 //if($gone2>0){ 
     // 取每筆資料
+    
    foreach($data2[0] as $value) 
     {
         echo "<h4>$value";                                     // 印出景點名
-        echo "<a href='travel_done.php?gone={$row['dname']}'>no</a>";   // 刪除景點
+        echo "<a href='/EasyMVC/travel/mydelete={$row['dname']}'>no</a>";   // 刪除景點
         echo "</h4>";       
     }
-    echo"</div>
-        </div>
-       </div>";
-//}
+    ?>
+    </div>
+  </div>
+</div>
 
-// 印出Tainan的%
-echo "<div class='highlight-info'>
-        <div class='container'>
-          <div class='row text-center  wowload fadeInDownBig'>
-            <h4>Tainan：complete $data2[1] %</h4>
-          </div>
-        </div>
-     </div>";
-?>
-
+<!-- 印出Tainan% -->
+<div class='highlight-info'>
+  <div class='container'>
+    <div class='row text-center  wowload fadeInDownBig'> 
+      <h4>Taichung：complete <?php echo $data2[1] ?>%</h4>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

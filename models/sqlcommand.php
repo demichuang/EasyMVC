@@ -63,7 +63,7 @@ class sqlcommand{
     
     
     
-//view    
+//View    
     function cadd($additem){
         
         
@@ -227,7 +227,7 @@ else{
     
     
     
-//travel    
+//Travel    
     // 從dstaddress取地點經緯度
     function ds($num){
         $_SESSION["ds"]=$num;
@@ -317,111 +317,83 @@ else{
 
 
 
-
-
-
-//achievement
+//Achievement
+    // 取得Taichung 去過景點和計算%
     function getnum(){
-        $cmd="SELECT * FROM dst WHERE d=1";
-//        $cmd2="SELECT * FROM dst WHERE d=2";
-        $cmd3="SELECT * FROM file
-                WHERE username ='{$_SESSION['userName']}'
-                AND gone=1";
-/*        $cmd4="SELECT * FROM file2
-                WHERE username ='{$_SESSION['userName']}'
-                AND gone=1";
-  */      
+        $cmd="SELECT * FROM dst 
+              WHERE d=1";
+        $cmd2="SELECT * FROM file
+               WHERE username ='{$_SESSION['userName']}'
+               AND gone=1";
+
+        $db=new connect_db();
+        $result=$db->connect($cmd);
+        $result2=$db->connect($cmd2);
         
+        $row = mysqli_num_rows($result);
+        $gone = mysqli_num_rows($result2);
+        $row1 =mysqli_fetch_array($result2);
+        
+        $gonenumber = round(($gone/$row)*100,2);      
+        
+        return [$row1,$gonenumber];
+    }
+    
+    // 取得Tainan 去過景點和計算%
+    function getnum2(){
+        $cmd="SELECT * FROM dst 
+               WHERE d=2";
+        $cmd2="SELECT * FROM file2
+               WHERE username ='{$_SESSION['userName']}'
+               AND gone=1";
         
         $db=new connect_db();
         $result=$db->connect($cmd);
-    //    $result2=$db->connect($cmd2);
-        $result3=$db->connect($cmd3);
-      //  $result4=$db->connect($cmd4);
-        
-        $row1=mysqli_num_rows($result);
-        //$row2=mysqli_num_rows($result2);
-        $gone = mysqli_num_rows($result3);
-        $row =mysqli_fetch_array($result3);
-        //$gone2 = mysqli_num_rows($result4);
-        
-        
-        $gonenumber = round(($gone/$row1)*100,2);       // 計算去過Taichung景點數的%
-        //$gonenumber2 = round(($gone2/$row2)*100,2);
-        
-        return [$row,$gonenumber];
-        //return $y=$gonenumber2;
-    }
-    function getnum2(){
-      //  $cmd="SELECT * FROM dst WHERE d=1";
-        $cmd2="SELECT * FROM dst WHERE d=2";
-     /*   $cmd3="SELECT * FROM file
-                WHERE username ='{$_SESSION['userName']}'
-                AND gone=1";*/
-        $cmd4="SELECT * FROM file2
-                WHERE username ='{$_SESSION['userName']}'
-                AND gone=1";
-        
-        
-        
-        $db=new connect_db();
-   //     $result=$db->connect($cmd);
         $result2=$db->connect($cmd2);
-   //     $result3=$db->connect($cmd3);
-        $result4=$db->connect($cmd4);
         
-    //    $row1=mysqli_num_rows($result);
-        $row2=mysqli_num_rows($result2);
-    //    $gone = mysqli_num_rows($result3);
-        $gone2 = mysqli_num_rows($result4);
-        $row =mysqli_fetch_array($result4);
+        $row=mysqli_num_rows($result);
+        $gone = mysqli_num_rows($result2);
+        $row1 = mysqli_fetch_array($result2);
         
+        $gonenumber = round(($gone/$row)*100,2);
         
-    //    $gonenumber = round(($gone/$row1)*100,2);       // 計算去過Taichung景點數的%
-        $gonenumber2 = round(($gone2/$row2)*100,2);
-        
-     //   return $x=$gonenumber;
-        return [$row,$gonenumber2];
+        return [$row1,$gonenumber];
     }
+    
+    // 取消已去過的景點
     function noclick(){
-        
+        $cmd="UPDATE file SET gone=0
+              WHERE dname='{$_GET['gone']}' 
+              AND username='{$_SESSION['userName']}'";
+        $cmd2="UPDATE file2 SET gone=0
+               WHERE dname='{$_GET['gone']}' 
+               AND username='{$_SESSION['userName']}'";
+        $db=new connect_db();
+        $db->connect($cmd);
+        $db->connect($cmd2);
     }
     
     
     
+//Forum
+    // 新增留言
+    function addword( $name, $word, $now){
+        $cmd="INSERT talk (name,word,time)
+              VALUES ( '$name', '$word', '$now')";  
+        $db=new connect_db();
+        $db->connect($cmd); 
+    }    
     
+    // 顯示留言
+    function showword(){
+    $cmd="SELECT * FROM talk ORDER BY num DESC";   //從talk資料表最新資料開始取
+    $db=new connect_db();
+    $result=$db->connect($cmd);
     
-    
-    
-    
-    
-function addword( $name, $word, $now){
+    $numwords = mysqli_num_rows($result);
         
-     $cmd="INSERT talk (name,word,time)
-                                VALUES ( $name, $word, $now)";   //從talk資料表最新資料開始取
-$db=new connect_db();
-$result=$db->connect($cmd);   
-return $result;      
-}    
-
-function showword(){
-    
-$cmd="SELECT * FROM talk ORDER BY num DESC";   //從talk資料表最新資料開始取
-$db=new connect_db();
-$result=$db->connect($cmd);
-$numwords = mysqli_num_rows($result);   //總留言數
-
-
-$row = mysqli_fetch_array($result);
-    
-    
-
-
-
-
-return [$numwords,$row];
+    return [$numwords,$result];
+    }
 }
-    
-    
-}
+
 ?>

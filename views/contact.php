@@ -73,31 +73,29 @@ $numwords = mysqli_num_rows($result);   //總留言數
 
 <!--Forum Starts -->
 <div class="container contactform center">
-<!-- 顯示"Say Something" -->
-<h2 class="text-center  wowload fadeInUp">Say Something ...</h2>
-<!-- 顯示總留言數 -->
-<h4><?php echo "Total：$data messages "; ?></h4>
-<!-- 顯示我想留言 -->
-<h4 class="text-right  wowload fadeInUp"><a href="/EasyMVC/contact/goenter">I want say something...</a></h4>
-
-<?php
-echo '<form cols="35" rows="7" >
-      <ul>';
-
-//印出每筆留言
-foreach ($data2 as $value)
-  {
-    echo "<li text-align: center>
-          <p><h5><strong>{$value}</strong>";      // 印出名字
-	  echo " <em>({$row['time']})</em></h5></p>";         // 印出時間
-		echo "<div class='text-center  wowload fadeInUp'>
-		        <p><h5>{$row['word']}</h5></p>
-		        </div>
-		      </li>";         // 印出留言
-  }
-  echo '</ul>';
-  echo '</form>';
-?>
+  <!-- 顯示"Say Something" -->
+  <h2 class="text-center  wowload fadeInUp">Say Something ...</h2>
+  <!-- 顯示總留言數 -->
+  <h4><?php echo "Total：$data messages "; ?></h4>
+  <!-- 顯示我想留言 -->
+  <h4 class="text-right  wowload fadeInUp"><a href="/EasyMVC/contact/goenter">I want say something...</a></h4>
+  
+  <form cols="35" rows="7" >
+    <ul>
+      
+      <!-- 印出留言 -->
+      <li text-align: center>
+      <p><h5><strong><?php echo $data2[0]?></strong>      
+    	      <em><?php echo $data2[1]?></em></h5></p>      
+    	
+    	<div class='text-center  wowload fadeInUp'>
+    	  <p><h5><?php echo $data2[2]?></h5></p>
+    	</div>
+    	</li>
+    	
+    </ul>
+  </form>
+  
 </div>
 <!--Forum Ends -->
 

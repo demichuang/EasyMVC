@@ -13,9 +13,8 @@ if (!empty($_POST['name']) && !empty($_POST['word']))
   date_default_timezone_set('Asia/Taipei');   //時間設定:Taipei時間 
   $now = date("Y-m-d H:i:s");                 //時間設定(年、月、日 時、分、秒)
   
- // $addword=$this->model("sqlcommand");
-//  $row=$addword->addword();
-  
+  $addword=$this->model("sqlcommand");
+$addword->addword($name,$word,$now);
   
                             // 寫入talk資料表
 }

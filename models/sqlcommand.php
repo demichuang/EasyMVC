@@ -433,17 +433,14 @@ function deletedb($dnum){
     
     
     
-function addword(){
+function addword( $name, $word, $now){
         
-        
-        
-    $stmt = mysqli_prepare($conn,"INSERT $Table_talk (name,word,time)
-                                VALUES (?, ?, ?)");             //準備查詢
-  mysqli_stmt_bind_param($stmt, 'sss', $name, $word, $now);     // 指定資料類型為字串，連結參數
-  mysqli_stmt_execute($stmt);         
-        
-        
-    }    
+     $cmd="INSERT talk (name,word,time)
+                                VALUES ( $name, $word, $now)";   //從talk資料表最新資料開始取
+$db=new connect_db();
+$result=$db->connect($cmd);   
+return $result;      
+}    
 
 function showword(){
     

@@ -95,12 +95,16 @@ $this->view("travel",[$lat,$lng,$mark],[$row['dname'],$row['dnum']],$row2);
 
 
 
-
-
-
-
-
-
+function mydelete($dnum){
+ 
+    $deletedst=$this->model("sqlcommand");
+    $row=$deletedst->deletedb($dnum);
+    
+    
+    $this->view("/EasyMVC/travel/travel",$dnum); 
+  
+  
+}
 
 
 

@@ -50,12 +50,12 @@ else
                 
                 <!-- 已會員登入， 網站可以連結 -->
                 <?php if ($sUserName != "Guest"): ?>
-                 <li class="active"><a href="index">Home</a></li>
-                 <li ><a href="newview/newview">View</a></li>
-                 <li ><a href="travel/travel">My Travel</a></li>
-                 <li ><a href="achievement/achievement">My Achievement</a></li>
-                 <li ><a href="contact/contact">Forum</a></li>
-                 <li ><a href="index">Logout</a></li>
+                 <li class="active"><a href="/EasyMVC/index">Home</a></li>
+                 <li ><a href="/EasyMVC/newview/newview">View</a></li>
+                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+                 <li ><a href="/EasyMVC/achievement/achievement">My Achievement</a></li>
+                 <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
+                 <li ><a href="/EasyMVC/index">Logout</a></li>
                 <?php endif; ?> 
                 
                 <!-- 尚未登入前點選其他頁面的連結，傳id=1值給原頁面(index.php)，顯示要先登入 -->

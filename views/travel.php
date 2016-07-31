@@ -175,7 +175,7 @@ if(mysqli_num_rows($result)>0){
     while($data2[0])
     {*/
         echo "<h4>{$data2[0]}";                                     // 印出景點名稱    
-        echo "<a href='travel_done.php?del={$data2[1]}'>delete</a>"; // 刪除景點      
+        echo "<a href='/EasyMVC/travel/mydelete($data2[1])'>delete</a>"; // 刪除景點      
         echo "</h4>";       
  //   }
     echo"</div>

@@ -331,6 +331,100 @@ else
         
         
     }
+
+function deletedb($dnum){
+     if($_SESSION['ds']=="0"){
+     $cmd="UPDATE file SET additem=0
+                                    WHERE dnum='$dnum' 
+                                    AND username='{$_SESSION['userName']}'";
+
+    
+         
+     }
+    // 如果點選"Tainan按鈕"
+    if($_SESSION['ds']=="1") 
+        {// 將file2的additem欄位更改為0(刪除加入景點)
+        $cmd="UPDATE file2 SET additem=0
+                                    WHERE dnum='$dnum' 
+                                    AND username='{$_SESSION['userName']}'";
+}
+    
+    $db=new connect_db();
+    $db->connect($cmd);
+    
 }
 
+
+
+
+
+
+
+    function getnum(){
+        $cmd="SELECT * FROM dst WHERE d=1";
+//        $cmd2="SELECT * FROM dst WHERE d=2";
+        $cmd3="SELECT * FROM file
+                WHERE username ='{$_SESSION['userName']}'
+                AND gone=1";
+/*        $cmd4="SELECT * FROM file2
+                WHERE username ='{$_SESSION['userName']}'
+                AND gone=1";
+  */      
+        
+        
+        $db=new connect_db();
+        $result=$db->connect($cmd);
+    //    $result2=$db->connect($cmd2);
+        $result3=$db->connect($cmd3);
+      //  $result4=$db->connect($cmd4);
+        
+        $row1=mysqli_num_rows($result);
+        //$row2=mysqli_num_rows($result2);
+        $gone = mysqli_num_rows($result3);
+        $row =mysqli_fetch_array($result3);
+        //$gone2 = mysqli_num_rows($result4);
+        
+        
+        $gonenumber = round(($gone/$row1)*100,2);       // 計算去過Taichung景點數的%
+        //$gonenumber2 = round(($gone2/$row2)*100,2);
+        
+        return [$row,$gonenumber];
+        //return $y=$gonenumber2;
+    }
+    function getnum2(){
+      //  $cmd="SELECT * FROM dst WHERE d=1";
+        $cmd2="SELECT * FROM dst WHERE d=2";
+     /*   $cmd3="SELECT * FROM file
+                WHERE username ='{$_SESSION['userName']}'
+                AND gone=1";*/
+        $cmd4="SELECT * FROM file2
+                WHERE username ='{$_SESSION['userName']}'
+                AND gone=1";
+        
+        
+        
+        $db=new connect_db();
+   //     $result=$db->connect($cmd);
+        $result2=$db->connect($cmd2);
+   //     $result3=$db->connect($cmd3);
+        $result4=$db->connect($cmd4);
+        
+    //    $row1=mysqli_num_rows($result);
+        $row2=mysqli_num_rows($result2);
+    //    $gone = mysqli_num_rows($result3);
+        $gone2 = mysqli_num_rows($result4);
+        $row =mysqli_fetch_array($result4);
+        
+        
+    //    $gonenumber = round(($gone/$row1)*100,2);       // 計算去過Taichung景點數的%
+        $gonenumber2 = round(($gone2/$row2)*100,2);
+        
+     //   return $x=$gonenumber;
+        return [$row,$gonenumber2];
+    }
+    function noclick(){
+        
+        
+    }
+}
 ?>

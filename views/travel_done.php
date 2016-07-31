@@ -20,7 +20,7 @@ if(!empty($_POST['word']))
     header('Location:travel.php');      // 跳轉頁面(travel.php)
 }
 
-*/
+
 // 點選"delete按鈕"
 if(($_GET['del'])!="")
 {
@@ -38,7 +38,7 @@ if(($_GET['del'])!="")
                             AND username='{$_SESSION['userName']}'");
     header('Location:travel.php');      // 跳轉頁面(travel.php)
 }
-
+*/
 // 點選"no按鈕"
 if(($_GET['gone'])!="")
 { 

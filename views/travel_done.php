@@ -1,26 +1,5 @@
 <?php
 /*
-
-// 如果有規劃資料
-if(!empty($_POST['word']))
-{
-    $word = ereg_replace("\n", "<br />\n", $_POST['word']); // 將換行轉成資料庫存取的換行符號
-    
-    // 修改的是Taichung的規劃資料
-    if($_GET['plan']==0)
-        //更新Taichung的規劃資料
-        $sql = "UPDATE $Table_user SET edit ='$word'
-                WHERE username='{$_SESSION['userName']}'";
-    // 修改的是Tainan的規劃資料
-    else
-        //更新Tainan的規劃資料
-        $sql = "UPDATE $Table_user SET edit2 ='$word'
-                WHERE username='{$_SESSION['userName']}'";
-    mysqli_query($conn,$sql);
-    header('Location:travel.php');      // 跳轉頁面(travel.php)
-}
-
-
 // 點選"delete按鈕"
 if(($_GET['del'])!="")
 {

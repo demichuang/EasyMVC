@@ -19,12 +19,12 @@ class indexController extends Controller {
         
         $login =$this->model("sqlcommand");
     	$num =$login->logincheck($user,$password);  // 取user資料表與輸入的username和userpassword相符的資料筆數
+    	
      	if (trim($user) !="" & $num == 1)   // 登入成功(如果輸入的username非空值，且user資料表內有一筆相符的資料)    
     	{
     		$_SESSION["userName"]=$user;    // $_SESSION['userName']設為輸入的username
     		$this->view("index");           // 回到登入頁	                                      // 離開php程式
     	}
-    	
     	else                                //	登入失敗    
     	{
     	    $_SESSION["userName"]="Guest";  // $_SESSION["userName"]設為"Guest"
@@ -44,21 +44,16 @@ class indexController extends Controller {
         
         $signup=$this->model("sqlcommand");
     	$result =$signup->signupcheck($newuser);   // 取user資料表與新輸入的username相符的資料
-    	$row = mysqli_fetch_array($result);                           // 取資料
+    	$row = mysqli_fetch_array($result);        // 取每筆資料
         
-    	if (mysqli_num_rows($result)>0)         // 如果有與輸入的username相符的資料                        
+    	if (mysqli_num_rows($result)>0)        // 如果有與輸入的username相符的資料                        
     	{
-    	  if($row['userpassword']==$newpassword)    // 如果輸入的userpassword也相符
-    	  {  
-    	    $this->view("index",3);                 // 回到登入頁，傳data=3值，顯示本來就是會員了     
-    	  }                              
-    	  else                                      // 如果輸入的userpassword不相符    
-    	  {  
+    	  if($row['userpassword']==$newpassword)  // 如果輸入的userpassword也相符
+    	    $this->view("index",3);                 // 回到登入頁，傳data=3值，顯示本來就是會員了
+    	  else                                   // 如果輸入的userpassword不相符 
     	    $this->view("index_sign",4);            // 回到註冊頁，傳data=4值，顯示帳號名已被使用
-    	  }
     	}
-    	
-    	else                                    // 如果沒有與輸入的username相符的資料
+    	else                                   // 如果沒有與輸入的username相符的資料
     	{
         	$addnew=$this->model("sqlcommand");
         	$result =$addnew->adduser($newuser,$newpassword);    // 新增輸入的username和userpassword至user資料表
@@ -72,4 +67,5 @@ class indexController extends Controller {
         $this->view("index");             // 回到登入頁
     }
 }
+
 ?>

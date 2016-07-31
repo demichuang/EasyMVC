@@ -1,31 +1,3 @@
-<?php
-/*
-// 點選"Tainan按鈕"  
-if(isset($_POST['tain']))
-{
-   $_SESSION["ds"]=1;       // 設$_SESSION["ds"]為1
-   
-   //從dstaddress取Tainan的經緯度資料
-   $result3=mysqli_query($conn,"SELECT *FROM $Table_dstaddress 
-                                WHERE d=1");
-}
-// 點選"Taichung按鈕"
-else
-{
-   $_SESSION["ds"]=0;       // 設$_SESSION["ds"]為0
-   
-   //從dstaddress取Taichung的經緯度資料
-   $result3=mysqli_query($conn,"SELECT *FROM $Table_dstaddress 
-                                WHERE d=0");
-}    
-
-$row3=mysqli_fetch_array($result3); // 取資料
-$lat = $row3['lat'];                // 取經度
-$lng = $row3['lng'];                // 取緯度
-$mark = $row3['mark'];              // 取標記
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,48 +113,30 @@ async defer></script>
 
 
 <!-- List Starts -->
-<?php
-echo "<div class='overlay spacer'>
-        <div class='container'>";
-?>        
 
-<!-- Taichung & Tainan button -->
-<form method="post" action="/EasyMVC/travel/dsbutton">
-  <button  name="taic" type="submit">Taichung</button> 
-  <button  name="tain" type="submit">Tainan</button> 
-</form>       
+<div class='overlay spacer'>
+  <div class='container'>
 
-<?php        
-echo "    <h3>Your list：</h3>
-            <div class='row text-center'>";
- /*           
-// 如果點選"Taichung按鈕"            
-if($_SESSION['ds']=="0")
-    // 從file資料表內取username加入的景點的資料 
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file 
-                                WHERE username ='{$_SESSION['userName']}' 
-                                AND additem ='1'"); 
-// 如果點選"Tainan按鈕"
-else
-    // 從file2資料表內取username加入的景點的資料 
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file2 
-                                WHERE username ='{$_SESSION['userName']}' 
-                                AND additem ='1'"); 
+    <!-- Taichung & Tainan button -->
+    <form method="post" action="/EasyMVC/travel/dsbutton">
+      <button  name="taic" type="submit">Taichung</button> 
+      <button  name="tain" type="submit">Tainan</button> 
+    </form>       
 
-// 列出加入的景點名稱
+    <h3>Your list：</h3>
+    <div class='row text-center'>
+<?php  
+/* 列出加入的景點名稱
 if(mysqli_num_rows($result)>0){
 
     while($data2[0])
     {*/
-        echo "<h4>{$data2[0]}";                                     // 印出景點名稱    
-        echo "<a href='/EasyMVC/travel/mydelete($data2[1])'>delete</a>"; // 刪除景點      
-        echo "</h4>";       
- //   }
-    echo"</div>
-        </div>
-       </div>";
-
-?>
+        echo "<h4>{$data2}";                                     // 印出景點名稱    
+        echo "<a href='/EasyMVC/travel/mydelete($data2)'>delete</a>"; // 刪除景點      
+        echo "</h4>";?>       
+    </div>
+  </div>
+</div>
 <!-- List Ends -->
 
 
@@ -193,27 +147,9 @@ if(mysqli_num_rows($result)>0){
       <div class="item  animated bounceInLeft row">
         <div  class="col-xs-10">
             
-        <?php
-        // 從user資料表資料表內取與username對應的資料
-       /* $result2=mysqli_query($conn,"SELECT * FROM $Table_user
-                                    WHERE username='{$_SESSION['userName']}'");
-        // 取每筆資料        
-        while($row2 =mysqli_fetch_array($result2)){
-                // 如果點選"Taichung按鈕"
-                if($_SESSION['ds']=="0")
-                {
-                  echo "<h4>{$data3}</h4>";                                                  // 印出Taichung計畫
-                  echo "<h5><a href='travel_edit.php?edit={$_SESSION['userName']}'>edit</a><h5>";   // 編輯Taichung計畫   
-            //    }
-                // 如果點選"Tainan按鈕"
-            //    else
-              //  {*/
-                  echo "<h4>{$data3}</h4>";                                                 // 印出Tainan的計畫
-                  echo "<h5><a href='/EasyMVC/travel/goedit'>edit</a><h5>";  // 印出Tainan的計畫
-              //  }
-       // }
-        ?>
-      
+            <h4><?php echo $data3;?></h4>                       <!-- 印出計畫 -->
+            <h5><a href='/EasyMVC/travel/goedit'>edit</a><h5>   <!-- 編輯計畫 -->
+            
          </div>
       </div>
     </div>

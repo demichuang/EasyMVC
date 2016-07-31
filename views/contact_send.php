@@ -1,6 +1,4 @@
-<?php
-session_start();  // 啟動session(使用：$_SESSION['userName'])
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,14 +9,14 @@ session_start();  // 啟動session(使用：$_SESSION['userName'])
 <title>Life is Travel.</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" href="assets/animate/animate.css" />
-<link rel="stylesheet" href="assets/animate/set.css" />
-<link rel="stylesheet" href="assets/gallery/blueimp-gallery.min.css">
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/EasyMVC/views/assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/EasyMVC/views/assets/animate/animate.css" />
+<link rel="stylesheet" href="/EasyMVC/views/assets/animate/set.css" />
+<link rel="stylesheet" href="/EasyMVC/views/assets/gallery/blueimp-gallery.min.css">
+<link rel="shortcut icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
 
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="/EasyMVC/views/assets/style.css">
 
 </head>
 
@@ -38,12 +36,12 @@ session_start();  // 啟動session(使用：$_SESSION['userName'])
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                 
-                 <li ><a href="index.php">Home</a></li>
-                 <li ><a href="view.php">View</a></li>
-                 <li ><a href="travel.php">My Travel</a></li>
-                 <li ><a href="achievement.php">My Ahievement</a></li>
-                 <li class="active"><a href="contact.php">Forum</a></li>
-                 <li ><a href="index.php?logout=1">Logout</a></li>
+                 <li ><a href="../index">Home</a></li>
+                 <li ><a href="/EasyMVC/newview/newviewp">View</a></li>
+                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+                 <li ><a href="/EasyMVC/achievement/achievement">My Ahievement</a></li>
+                 <li class="active"><a href="/EasyMVC/contact/contact">Forum</a></li>
+                 <li ><a href="../index">Logout</a></li>
                
               </ul>
             </div>
@@ -65,7 +63,7 @@ session_start();  // 啟動session(使用：$_SESSION['userName'])
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12"> 
         <!-- 顯示留言畫面 -->
-        <form method="post" action="contact.php">
+        <form method="post" action="/EasyMVC/contact/contact">
           <input type="text" placeholder="Name" name="name" required>
           <textarea rows="5" placeholder="Your words" name="word"  required></textarea>
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;

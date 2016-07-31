@@ -71,6 +71,7 @@ class sqlcommand{
 
 	  } 
 	  
+	  return;
 	  
 	  
 	  
@@ -105,7 +106,7 @@ class sqlcommand{
     	
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-
+        return;
     }
     
     function nadd($additem){
@@ -133,7 +134,7 @@ class sqlcommand{
     	
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-
+ return;
     }
     
     
@@ -161,7 +162,7 @@ class sqlcommand{
     	
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-
+ return;
     }
     
     function ngone($gone){
@@ -188,7 +189,7 @@ class sqlcommand{
     	
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-
+ return;
     }
     
 
@@ -211,7 +212,7 @@ else{
     	$result=$db->connect($cmd);
 }
 // 呼叫dst資料
-
+ return;
     }
 
     function showpicture(){
@@ -315,8 +316,6 @@ else
             $edit = ereg_replace("<br />", "", $row['edit2']);
         return $edit;
     }
-    
-    
     function getedit($word){
         
         if($_SESSION['ds']=="0")
@@ -328,7 +327,7 @@ else
                 WHERE username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $db->connect($cmd);
-        
+        return; 
         
     }
 
@@ -351,7 +350,7 @@ function deletedb($dnum){
     
     $db=new connect_db();
     $db->connect($cmd);
-    
+     return;
 }
 
 
@@ -424,7 +423,46 @@ function deletedb($dnum){
     }
     function noclick(){
         
-        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+function addword(){
+        
+        
+        
+    $stmt = mysqli_prepare($conn,"INSERT $Table_talk (name,word,time)
+                                VALUES (?, ?, ?)");             //準備查詢
+  mysqli_stmt_bind_param($stmt, 'sss', $name, $word, $now);     // 指定資料類型為字串，連結參數
+  mysqli_stmt_execute($stmt);         
+        
+        
+    }    
+
+function showword(){
+    
+$cmd="SELECT * FROM talk ORDER BY num DESC";   //從talk資料表最新資料開始取
+$db=new connect_db();
+$result=$db->connect($cmd);
+$numwords = mysqli_num_rows($result);   //總留言數
+
+
+$row = mysqli_fetch_array($result);
+    
+    
+
+
+
+
+return [$numwords,$row];
+}
+    
+    
 }
 ?>

@@ -1,13 +1,3 @@
-<?php 
-// 如果$_SESSION['userName']存在
-if (isset($_SESSION["userName"]))       
-  $sUserName = $_SESSION["userName"];   // $sUserName設為$_SESSION['userName'](使用者名稱)
-// 如果$_SESSION['userName']不存在
-else                                    
-  $sUserName = "Guest";                 // $sUserName設為"Guest"(訪客)
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -38,18 +28,18 @@ else
       <div class="container">
         
         <!-- 尚未登入時，顯示註冊連結 -->
-        <?php if ($sUserName == "Guest"): ?>
+        <?php if ($data == "Guest"): ?>
          <a class="navbar-brand active" href="/EasyMVC/index/gosignup"><h2>Sign Up</h2></a>
         <!-- 已登入時，顯示使用者名稱 -->
         <?php else: ?>
-         <a class="navbar-brand active"><h2><?php echo $sUserName?></h2></a>
+         <a class="navbar-brand active"><h2><?php echo $data?></h2></a>
         <?php endif; ?>    
         
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                 
                 <!-- 已會員登入， 網站可以連結 -->
-                <?php if ($sUserName != "Guest"): ?>
+                <?php if ($data != "Guest"): ?>
                  <li class="active"><a href="/EasyMVC/index">Home</a></li>
                  <li ><a href="/EasyMVC/newview/newview">View</a></li>
                  <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
@@ -59,7 +49,7 @@ else
                 <?php endif; ?> 
                 
                 <!-- 尚未登入前點選其他頁面的連結，顯示要先登入 -->
-                <?php if ($sUserName == "Guest"): ?>
+                <?php if ($data == "Guest"): ?>
                  <li class="active"><a href="/EasyMVC/index">Home</a></li>
                  <li ><a href="/EasyMVC/index/nologin">View</a></li>
                  <li ><a href="/EasyMVC/index/nologin">My Travel</a></li>
@@ -83,9 +73,9 @@ else
   <div class="container contactform center">
    
   <!-- 已會員登入 -->
-  <?php if ($sUserName != "Guest"): ?>
+  <?php if ($data != "Guest"): ?>
     <!-- 顯示"Welcome, 使用者名稱" -->
-    <h2 class="text-center  wowload fadeInUp"><?php echo "Welcome! " . $sUserName ?></h2>
+    <h2 class="text-center  wowload fadeInUp"><?php echo "Welcome! " . $data ?></h2>
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12"> 
         <!-- 顯示登出畫面， -->
@@ -97,7 +87,7 @@ else
   <?php endif; ?>    
     
   <!-- 尚未登入 -->    
-  <?php if ($sUserName == "Guest"): ?>
+  <?php if ($data == "Guest"): ?>
     <!-- 顯示"Please Login" -->
     <h2 class="text-center  wowload fadeInUp">Please Login</h2>
     <div class="row wowload fadeInLeftBig">      
@@ -114,25 +104,25 @@ else
     &nbsp;&nbsp;
   <?php endif; ?>
   
-    <!-- 得$data=1值，顯示要先登入 -->
-    <?php if ($data==1):?> 
+    <!-- 得$data2=1值，顯示要先登入 -->
+    <?php if ($data2==1):?> 
       <h4 class="text-center  wowload fadeInUp">You need to login first.</h4>
     <?php endif; ?>
     
-    <!-- 得$data=2值，顯示輸入錯誤，或還不是會員 -->
-    <?php if ($data==2):?> 
+    <!-- 得$data2=2值，顯示輸入錯誤，或還不是會員 -->
+    <?php if ($data2==2):?> 
       <h4 class="text-center  wowload fadeInUp">You have wrong enter or you are not a member.</h4>
       <h4 class="text-center  wowload fadeInUp">Please enter again or sign up first.</h4>
     <?php endif; ?>
     
-    <!-- 得$data=3值，顯示本來就是會員了，登入即可 -->
-    <?php if ($data==3):?> 
+    <!-- 得$data2=3值，顯示本來就是會員了，登入即可 -->
+    <?php if ($data2==3):?> 
       <h4 class="text-center  wowload fadeInUp">You are already a member.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h>
     <?php endif; ?>
     
-    <!-- 得$data=5值，顯示現在是會員了，請登入 -->
-    <?php if ($data==5):?> 
+    <!-- 得$data2=5值，顯示現在是會員了，請登入 -->
+    <?php if ($data2==5):?> 
       <h4 class="text-center  wowload fadeInUp">You are a member now.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h4>
     <?php endif; ?>

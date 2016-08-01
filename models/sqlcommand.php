@@ -2,6 +2,23 @@
 
 class sqlcommand{
 //首頁
+    
+    // 判斷$_SESSION["userName"]是否存在 
+    function haveuser(){
+        if (isset($_SESSION["userName"]))       
+            $sUserName = $_SESSION["userName"]; 
+        else
+            $sUserName = "Guest";               
+
+        return $sUserName;              // 回傳$sUserName 
+    }
+    
+    // 定義$_SESSION["userName"] 
+    function sessionuser($sessionuser){
+        $_SESSION["userName"] =$sessionuser; 
+        return $_SESSION["userName"];        // 回傳$_SESSION["userName"]  
+    }
+    
     // 從user資料表取與輸入的username和userpassword相符的資料      
     function logincheck($user,$password){
         $cmd="SELECT * FROM user 
@@ -9,8 +26,8 @@ class sqlcommand{
               AND userpassword='$password'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-    	
     	$num=mysqli_num_rows($result);
+    	
     	return $num;    // 回傳資料筆數
     }
     
@@ -34,29 +51,25 @@ class sqlcommand{
     	
     	$cmd1="SELECT * FROM dst 
     	       WHERE d=1";
-    	$db1 =new connect_db();
-    	$result1=$db1->connect($cmd1);
+    	$result1=$db->connect($cmd1);
     
     	while($row = mysqli_fetch_array($result1))
 	    {
 	        $cmd2="INSERT file(username,dnum,dname,additem,gone)
 	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}',0,0)";
-    	    $db2 =new connect_db();
-    	    $db2->connect($cmd2);
+    	    $db->connect($cmd2);
 	    }
 	    
 	    
 	    $cmd3="SELECT * FROM dst 
 	           WHERE d=2";
-    	$db3 =new connect_db();
-    	$result2=$db3->connect($cmd3);
+    	$result2=$db->connect($cmd3);
     
     	while($row = mysqli_fetch_array($result2))
 	    {
 	        $cmd4="INSERT file2(username,dnum,dname,additem,gone)
 	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}',0,0)";
-        	$db4 =new connect_db();
-        	$db4->connect($cmd4);
+        	$db->connect($cmd4);
 	    } 
 	  
     }
@@ -101,6 +114,7 @@ class sqlcommand{
         if($_SESSION['dst']==1)                            
             $cmd="SELECT * FROM file2
                   WHERE username='{$_SESSION['userName']}'";
+                  
         $db =new connect_db();
         $result=$db->connect($cmd);
         $num = mysqli_num_rows($result);
@@ -148,6 +162,7 @@ class sqlcommand{
     	$db =new connect_db();
     	$result=$db->connect($cmd);
     	$row=mysqli_fetch_array($result);
+    	
     	return $row;
     }
     
@@ -165,6 +180,7 @@ class sqlcommand{
         $db=new connect_db();
         $result=$db->connect($cmd);
         $num = mysqli_num_rows($result);
+        
         return [$num,$result];          // 回傳資料筆數、資料
     }
 
@@ -174,7 +190,6 @@ class sqlcommand{
               WHERE username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $result=$db->connect($cmd);
-        
         $row=mysqli_fetch_array($result);
         
         if($_SESSION['ds']=="0")
@@ -193,9 +208,9 @@ class sqlcommand{
         
         if($_SESSION['ds']=="0")
             $edit = ereg_replace("<br />", "", $row['edit']);
-            
         else
             $edit = ereg_replace("<br />", "", $row['edit2']);
+        
         return $edit;           // 回傳規劃資料
     }
     
@@ -207,6 +222,7 @@ class sqlcommand{
         else
             $cmd="UPDATE user SET edit2 ='$word'
                   WHERE username='{$_SESSION['userName']}'";
+                  
         $db=new connect_db();
         $db->connect($cmd);
     }
@@ -219,6 +235,7 @@ class sqlcommand{
         $cmd2="UPDATE file2 SET additem=0
                WHERE dname='$del' 
                AND username='{$_SESSION['userName']}'";
+               
         $db=new connect_db();
         $db->connect($cmd);
         $db->connect($cmd2);
@@ -238,7 +255,6 @@ class sqlcommand{
         $db=new connect_db();
         $result=$db->connect($cmd);
         $result2=$db->connect($cmd2);
-        
         $row = mysqli_num_rows($result);
         $gone = mysqli_num_rows($result2);
         
@@ -258,7 +274,6 @@ class sqlcommand{
         $db=new connect_db();
         $result=$db->connect($cmd);
         $result2=$db->connect($cmd2);
-        
         $row=mysqli_num_rows($result);
         $gone = mysqli_num_rows($result2);
         
@@ -275,6 +290,7 @@ class sqlcommand{
         $cmd2="UPDATE file2 SET gone=0
                WHERE dname='$getgone' 
                AND username='{$_SESSION['userName']}'";
+               
         $db=new connect_db();
         $db->connect($cmd);
         $db->connect($cmd2);
@@ -293,13 +309,13 @@ class sqlcommand{
     
     // 顯示留言
     function showword(){
-    $cmd="SELECT * FROM talk ORDER BY num DESC";   
-    $db=new connect_db();
-    $result=$db->connect($cmd);
-    
-    $numwords = mysqli_num_rows($result);
-        
-    return [$numwords,$result];         // 回傳留言數、查詢結果
+        $cmd="SELECT * FROM talk 
+              ORDER BY num DESC";   
+        $db=new connect_db();
+        $result=$db->connect($cmd);
+        $numwords = mysqli_num_rows($result);
+            
+        return [$numwords,$result];         // 回傳留言數、查詢結果
     }
 }
 

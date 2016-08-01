@@ -90,7 +90,7 @@ async defer></script>
       <div class="container">
           
         <!-- 顯示使用者名稱 -->
-        <a class="navbar-brand active"><h2><?php echo $_SESSION["userName"];?></h2></a>
+        <a class="navbar-brand active"></a>
       
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">

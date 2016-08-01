@@ -6,7 +6,7 @@ class Controller {
         return new $model ();
     }
     
-    public function view($view, $data = Array(),$data2 = Array(),$data3 = Array()) {
+    public function view($view, $data = Array(),$data2 = Array(),$data3 = Array(),$data4 = Array()) {
         require_once "../EasyMVC/views/$view.php";
     }
 }

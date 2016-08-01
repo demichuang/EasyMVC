@@ -1,24 +1,3 @@
-<?php
-/*
-if (!empty($_POST['name']) && !empty($_POST['word']))
-{    
-  $name = $_POST['name'];   
-  $word = $_POST['word'];
-  
-  date_default_timezone_set('Asia/Taipei');   //時間設定:Taipei時間 
-  $now = date("Y-m-d H:i:s");                 //時間設定(年、月、日 時、分、秒)
-  
-  $stmt = mysqli_prepare($conn,"INSERT $Table_talk (name,word,time)
-                                VALUES (?, ?, ?)");             //準備查詢
-  mysqli_stmt_bind_param($stmt, 'sss', $name, $word, $now);     // 指定資料類型為字串，連結參數
-  mysqli_stmt_execute($stmt);                                   // 寫入talk資料表
-}
-
-$result=mysqli_query($conn,"SELECT * FROM $Table_talk ORDER BY num DESC");   //從talk資料表最新資料開始取
-$numwords = mysqli_num_rows($result);   //總留言數
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,16 +62,19 @@ $numwords = mysqli_num_rows($result);   //總留言數
   <form cols="35" rows="7" >
     <ul>
       
-      <!-- 印出留言 -->
-      <li text-align: center>
-      <p><h5><strong><?php echo $data2[0]?></strong>      
-    	      <em><?php echo $data2[1]?></em></h5></p>      
-    	
-    	<div class='text-center  wowload fadeInUp'>
-    	  <p><h5><?php echo $data2[2]?></h5></p>
-    	</div>
-    	</li>
-    	
+    <?php
+    for ($i = 0; $i < $data; $i++)
+      {
+        echo "<li text-align: center>
+              <p><h5><strong>{$data2[$i]}</strong>";      // 印出名字
+    	  echo " <em>({$data3[$i]})</em></h5></p>";         // 印出時間
+    		echo "<div class='text-center  wowload fadeInUp'>
+    		        <p><h5>{$data4[$i]}</h5></p>";            // 印出留言
+    		echo "  </div>
+    		      </li>";                                     
+      }
+    ?>    
+      
     </ul>
   </form>
   

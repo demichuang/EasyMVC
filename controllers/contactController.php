@@ -17,19 +17,26 @@ class contactController extends Controller {
     }
     
     $showword=$this->model("sqlcommand");
-    $numrows=$showword->showword();     //從talk資料表最新資料開始取
+    $numrows=$showword->showword();     // 從talk資料表最新資料開始取
     
-    while($row=mysqli_fetch_array($numrows[1]))
+    $array =array();  // 放留言者名稱
+    $array2=array();  // 放留言時間
+    $array3=array();  // 放留言內容
+    
+    while($row=mysqli_fetch_array($numrows[1])) // 留言紀錄寫進array
     {
-        $this->view("contact",$numrows[0],[$row['name'],$row['time'],$row['word']]);
+        array_push($array,$row['name']);
+        array_push($array2,$row['time']);
+        array_push($array3,$row['word']);
     }
+    
+    $this->view("contact",$numrows[0],$array,$array2,$array3);    // 到forum頁
   }
   
   // 到新增留言頁
   function goenter(){
       $this->view("contact_send");
   }
-
 }
 
 ?>

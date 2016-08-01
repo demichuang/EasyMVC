@@ -76,23 +76,29 @@ class sqlcommand{
 
     // 取景點資料
     function seeclick($id){
-        $cmd= "SELECT * FROM dst
-               WHERE dnum ='$id' 
-               AND d=1";
+        if($_SESSION['dst']==0)
+            $cmd= "SELECT * FROM dst
+                   WHERE dnum ='$id' 
+                   AND d=1";
+        if($_SESSION['dst']==1)
+            $cmd= "SELECT * FROM dst
+                   WHERE dnum ='$id' 
+                   AND d=2";
  
     	$db =new connect_db();
     	$result=$db->connect($cmd);
+    	$num = mysqli_num_rows($result);
     	$row =mysqli_fetch_array($result);
     	
-    	return [$row['dname'],$row['dinfo']];  // 回傳景點名、景點資訊
+    	return [$row['dname'],$row['dinfo'],$num];  // 回傳景點名、景點資訊
     }
     
     // 取景點圖片
     function showpicture(){
-        if($_SESSION['dst']=="0")   
+        if($_SESSION['dst']==0)   
             $cmd="SELECT * FROM file
                   WHERE username='{$_SESSION['userName']}'";
-        else                              
+        if($_SESSION['dst']==1)                            
             $cmd="SELECT * FROM file2
                   WHERE username='{$_SESSION['userName']}'";
         $db =new connect_db();
@@ -130,153 +136,6 @@ class sqlcommand{
     	$result=$db->connect($cmd2);
     }
 
-    
-    
-       /* 按鈕顯示 add 或 已加 
-   //function addclick($additem){
-        if($_SESSION['dst']=="0")   
-            $cmd="SELECT * FROM file 
-                WHERE additem=1 
-                AND username='{$_SESSION['userName']}'";
-        else                              
-            $cmd="SELECT * FROM file2 
-                WHERE additem=1 
-                AND username='{$_SESSION['userName']}'";
-        
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        //$row = mysqli_fetch_array($result);
-        return $result;
-        
-    }
-    
-        // 按鈕顯示 gone 或 已選 
-    //function showgone($gone){
-        if($_SESSION['dst']=="0")   
-            $cmd="SELECT * FROM file 
-                WHERE gone=1 
-                AND username='{$_SESSION['userName']}'";
-        else                              
-            $cmd="SELECT * FROM file2 
-                WHERE gone=1 
-                AND username='{$_SESSION['userName']}'";
-        
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        //$row = mysqli_fetch_array($result);
-        return $result;
-        
-    }
-    
-    
-    
-   // function cadd($additem){
-        
-        
-        $cmd= "SELECT * FROM file 
-                WHERE dnum='$additem' 
-                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        $row = mysqli_fetch_array($result);
-        return $row;
-        
-        
-    }*/
-    
-     
- /*   // function nadd($additem){
-        
-        
-        $cmd= "SELECT * FROM file2 
-                WHERE dnum='$additem' 
-                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        $row = mysqli_fetch_array($result);
-        return $row;
-        
-        
-    }
-    
-  //  function naddupdate($additem){
-        
-        
-        $cmd= "UPDATE file2 SET additem=1
-                WHERE dnum='$additem' 
-                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
- return;
-    }
-    
-    
-  // function cgone($gone){
-        
-        
-        $cmd= "SELECT * FROM file
-                                WHERE dnum='$gone' 
-                                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        $row = mysqli_fetch_array($result);
-        return $row;
-        
-        
-    }
-    
-   // function cgoneupdate($gone){
-        
-        $cmd= "UPDATE file SET gone=1
-              WHERE dnum='$gone' 
-              AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
- return;
-    }
-    
-   // function ngone($gone){
-        
-        
-        $cmd= "SELECT * FROM file2
-                                WHERE dnum='$gone' 
-                                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-        $row = mysqli_fetch_array($result);
-        return $row;
-        
-        
-    }*/   
-
-  
-
-    
-    
-    
-    
-
-
-    
-    
-    
-    
-    
-    
     
     
 //Travel    

@@ -61,67 +61,40 @@
 
 
 <!-- See Button click  Starts -->
-<?php
-// 如果點選"Taichung按鈕"// 如果點選"Taichung按鈕"
-/*
-if($_SESSION['dst']=="0")
-  // 從dst資料表內取Taichung景點的資料
-  $result=mysqli_query($conn,"SELECT * FROM $Table_dst
-                              WHERE dnum ='{$_GET['id']}' 
-                              AND d=1"); 
-// 如果點選"Tainan按鈕"
-else
-  // 取dst資料表內取Tainan景點的資料
-  $result=mysqli_query($conn,"SELECT * FROM $Table_dst
-                              WHERE dnum ='{$_GET['id']}'
-                              AND d=2"); 
-*/
 
-if ($_SESSION['id'] ==1){
-echo "<div class='highlight-info'>
-        <div class='container'>
-            <div class='row text-center  wowload fadeInDownBig'> ";
-    // 取每筆資料 
-//    while($row =mysqli_fetch_array($result))
- //   {
+<div class='highlight-info'>
+  <div class='container'>
+    <div class='row text-center  wowload fadeInDownBig'> 
+    
+    <?php
         echo "<h3>$data3[0]</h3>";    // 印出景點名      
         echo "<h4>$data3[1]</h4>";    // 印出景點資訊
         echo "<h3></h3>";       
-//    }
-    echo    "</div>
-          </div>
-        </div>";
-}
-?>
+    ?>
+    
+    </div>
+  </div>
+</div>
+
+
 <!-- See Button click Ends -->
 
 
 <!-- Picture Starts -->
 <div id="works"  class=" clearfix grid" > 
-<form method ="post" action="newview">
+<form method ="post" action="/EasyMVC/newview/newview">
 
 <?php
-// 如果點選"Taichung按鈕"
-/*
-if($_SESSION['dst']=="0")
-  //從file資料表內取與username對應的資料
-  $result=mysqli_query($conn,"SELECT * FROM $Table_file 
-                              WHERE username='{$_SESSION['userName']}'");
-// 如果點選"Tainan按鈕"
-else                              
-  //從file2資料表內取與username對應的資料
-  $result=mysqli_query($conn,"SELECT * FROM $Table_file2
-                             WHERE username='{$_SESSION['userName']}'");
-*/  // 取每筆資料
-  for($i=0; $i<$data; $i++){
+  for($i=0; $i<$data; $i++)
+  {
     echo "<figure class='effect-oscar  wowload fadeInUp' >";
     
     // 如果點選"Taichung按鈕"
-   if($_SESSION['dst']=="0")
+    if($_SESSION['dst']==0)
       //顯示Taichung景點圖片
-     echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
+      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
     // 如果點選"Tainan按鈕"
-   else
+    else
       //顯示Tainan景點圖片
       echo "<img name ='face'src='/EasyMVC/views/images/portfolio/1{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
     
@@ -134,7 +107,7 @@ else
             if($data2[2][$i]==0)             
               echo "<a href='/EasyMVC/newview/addbutton?additem={$data2[1][$i]}'>add</a>";    //顯示"add"按鈕
             //已加入該景點
-           else
+            else
               echo "<a>已加</a>" ;                                                            //顯示"已加"按鈕
               
             //未去過該景點
@@ -146,15 +119,15 @@ else
             
             //尚未點選"see more按鈕" 
             if($_SESSION["id"]==0)     
-              echo"<p><a href='EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   //顯示"see more"按鈕
+              echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   //顯示"see more"按鈕
             //已點選過"see more按鈕"
             else
               //判斷哪一景點按了see more按鈕
               if($data2[0][$i]==$_SESSION['id'])
-                echo"<p><a href='EasyMVC/newview/newview?id=0'>close</a>";                   //顯示"close"按鈕
+                echo"<p><a href='/EasyMVC/newview/newview?id=0'>close</a>";                   //顯示"close"按鈕
               //其餘景點  
               else
-                echo"<p><a href='EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   
+                echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   
                   
     echo    "</p>
           </figcaption>

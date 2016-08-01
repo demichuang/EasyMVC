@@ -9,7 +9,7 @@ class indexController extends Controller {
     
     //  未登入前點其他連結
     function nologin(){
-        $this->view("index",1); //回登入頁並顯示需先登入
+        $this->view("index",1);     //回登入頁，傳data=1值，顯示需先登入
     }     
     
     //  點登入按鈕
@@ -23,7 +23,7 @@ class indexController extends Controller {
      	if (trim($user) !="" & $num == 1)   // 登入成功(如果輸入的username非空值，且user資料表內有一筆相符的資料)    
     	{
     		$_SESSION["userName"]=$user;    // $_SESSION['userName']設為輸入的username
-    		$this->view("index");           // 回到登入頁	                                      // 離開php程式
+    		$this->view("index");           // 回到登入頁
     	}
     	else                                //	登入失敗    
     	{
@@ -48,9 +48,9 @@ class indexController extends Controller {
         
     	if (mysqli_num_rows($result)>0)        // 如果有與輸入的username相符的資料                        
     	{
-    	  if($row['userpassword']==$newpassword)  // 如果輸入的userpassword也相符
+    	  if($row['userpassword']==$newpassword)    // 如果輸入的userpassword也相符
     	    $this->view("index",3);                 // 回到登入頁，傳data=3值，顯示本來就是會員了
-    	  else                                   // 如果輸入的userpassword不相符 
+    	  else                                      // 如果輸入的userpassword不相符 
     	    $this->view("index_sign",4);            // 回到註冊頁，傳data=4值，顯示帳號名已被使用
     	}
     	else                                   // 如果沒有與輸入的username相符的資料

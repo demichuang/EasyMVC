@@ -9,8 +9,8 @@ class achievementController extends Controller {
         $dstnum2=$this->model("sqlcommand");
         $tain=$dstnum2->getnum2();              // 取Tainan資料
         
-        $array =array();  // 放Taichung景點名稱
-        $array2=array();  // 放Tainan景點名稱
+        $array =array();        // 放Taichung景點名稱
+        $array2=array();        // 放Tainan景點名稱
         
         while($row=mysqli_fetch_array($taic[1]))    // Taichung景點寫進array      
         {
@@ -22,7 +22,7 @@ class achievementController extends Controller {
             array_push($array2,$row['dname']);
         }
         
-        $this->view("achievement",[$taic[0],$tain[0]],$array,$array2,[$taic[2],$tain[2]]); // 到achievement頁    
+        $this->view("achievement",[$taic[0],$tain[0]],$array,$array2,[$taic[2],$tain[2]]);  // 到achievement頁(data1:去過的景點數、data2:Taichung景點array、data3:Tainan景點array、data4:%)    
     }
     
     // 點選no按鈕

@@ -58,7 +58,7 @@ else
                  <li ><a href="/EasyMVC/index">Logout</a></li>
                 <?php endif; ?> 
                 
-                <!-- 尚未登入前點選其他頁面的連結，傳id=1值給原頁面(index.php)，顯示要先登入 -->
+                <!-- 尚未登入前點選其他頁面的連結，顯示要先登入 -->
                 <?php if ($sUserName == "Guest"): ?>
                  <li class="active"><a href="/EasyMVC/index">Home</a></li>
                  <li ><a href="/EasyMVC/index/nologin">View</a></li>
@@ -114,24 +114,24 @@ else
     &nbsp;&nbsp;
   <?php endif; ?>
   
-    <!-- 得id=1值，顯示要先登入 -->
+    <!-- 得$data=1值，顯示要先登入 -->
     <?php if ($data==1):?> 
       <h4 class="text-center  wowload fadeInUp">You need to login first.</h4>
     <?php endif; ?>
     
-    <!-- 得id=2值，顯示輸入錯誤，或還不是會員 -->
+    <!-- 得$data=2值，顯示輸入錯誤，或還不是會員 -->
     <?php if ($data==2):?> 
       <h4 class="text-center  wowload fadeInUp">You have wrong enter or you are not a member.</h4>
       <h4 class="text-center  wowload fadeInUp">Please enter again or sign up first.</h4>
     <?php endif; ?>
     
-    <!-- 得id=3值，顯示本來就是會員了，登入即可 -->
+    <!-- 得$data=3值，顯示本來就是會員了，登入即可 -->
     <?php if ($data==3):?> 
       <h4 class="text-center  wowload fadeInUp">You are already a member.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h>
     <?php endif; ?>
     
-    <!-- 得id=5值，顯示現在是會員了，請登入 -->
+    <!-- 得$data=5值，顯示現在是會員了，請登入 -->
     <?php if ($data==5):?> 
       <h4 class="text-center  wowload fadeInUp">You are a member now.</h4>
       <h4 class="text-center  wowload fadeInUp">Please login.</h4>

@@ -63,13 +63,13 @@
     <ul>
       
     <?php
-    for ($i=0; $i<$data; $i++)
+      for ($i=0; $i<$data; $i++)
       {
         echo "<li text-align: center>
-              <p><h5><strong>{$data2[$i]}</strong>";      // 印出名字
-    	  echo " <em>({$data3[$i]})</em></h5></p>";         // 印出時間
+              <p><h5><strong>{$data2[$i]}</strong>";        // 印出名字
+    	  echo " <em>({$data3[$i]})</em></h5></p>";           // 印出時間
     		echo "<div class='text-center  wowload fadeInUp'>
-    		        <p><h5>{$data4[$i]}</h5></p>";            // 印出留言
+    		        <p><h5>{$data4[$i]}</h5></p>";              // 印出留言
     		echo "  </div>
     		      </li>";                                     
       }

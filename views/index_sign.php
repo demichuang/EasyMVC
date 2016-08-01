@@ -32,7 +32,7 @@
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
                 
-                 <!-- 尚未登入前點選其他頁面的連結，傳id=1值給頁面index.php，顯示要先登入 -->
+                 <!-- 尚未登入前點選其他頁面的連結，顯示要先登入 -->
                  <li class="active"><a href="index">Home</a></li>
                  <li ><a href="/EasyMVC/index/nologin">View</a></li>
                  <li ><a href="/EasyMVC/index/nologin">My Travel</a></li>
@@ -69,7 +69,7 @@
     </div>
     &nbsp;&nbsp;
     
-    <!-- 得id=4值，顯示帳號名已被使用 -->
+    <!-- 得data=4值，顯示帳號名已被使用 -->
     <?php if ($data==4):?> 
       <h4 class="text-center  wowload fadeInUp">This name has already been used.</h4>
       <h4 class="text-center  wowload fadeInUp">Please change another.</h4>

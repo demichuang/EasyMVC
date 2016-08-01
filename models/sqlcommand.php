@@ -355,10 +355,10 @@ class sqlcommand{
     // 取消景點選取
     function deletedb($del){
         $cmd="UPDATE file SET additem=0
-              WHERE dname='$dname' 
+              WHERE dname='$del' 
               AND username='{$_SESSION['userName']}'";
         $cmd2="UPDATE file2 SET additem=0
-               WHERE dname='$dname' 
+               WHERE dname='$del' 
                AND username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $db->connect($cmd);

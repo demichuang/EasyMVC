@@ -171,7 +171,7 @@ if(($_GET['gone'])!="")
 
 
 <!-- Taichung & Tainan Button -->
-<form method="post" action="view/dstbutton">
+<form method="post" action="/EasyMVC/newview/newview">
   <button  name="taichung" type="submit">Taichung</button> 
   <button  name="tainan" type="submit">Tainan</button> 
 </form>
@@ -192,7 +192,7 @@ else
   $result=mysqli_query($conn,"SELECT * FROM $Table_dst
                               WHERE dnum ='{$_GET['id']}'
                               AND d=2"); 
-*/
+
 
 // 呼叫dst資料
 echo "<div class='highlight-info'>
@@ -207,14 +207,14 @@ echo "<div class='highlight-info'>
 //    }
     echo    "</div>
           </div>
-        </div>";
+        </div>";*/
 ?>
 <!-- See Button click Ends -->
 
 
 <!-- Picture Starts -->
 <div id="works"  class=" clearfix grid" > 
-<form method ="post" action="view">
+<form method ="post" action="newview">
 
 <?php
 // 如果點選"Taichung按鈕"
@@ -229,33 +229,33 @@ else
   $result=mysqli_query($conn,"SELECT * FROM $Table_file2
                              WHERE username='{$_SESSION['userName']}'");
 */  // 取每筆資料
-  while($row = mysqli_fetch_array($result)){
+  for($i=0; $i<$data; $i++){
     echo "<figure class='effect-oscar  wowload fadeInUp' >";
     
     // 如果點選"Taichung按鈕"
-  //  if($_SESSION['dst']=="0")
+   if($_SESSION['dst']=="0")
       //顯示Taichung景點圖片
- //     echo "<img name ='face'src='images/portfolio/0{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
+     echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
     // 如果點選"Tainan按鈕"
- //   else
+   else
       //顯示Tainan景點圖片
-      echo "<img name ='face'src='images/portfolio/$data}.jpg' width='500' height='300'alt='img01'/>";
+      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/1{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
     
     //顯示景點名字
     echo "<figcaption>
-          <h2>{$row['dname']}</h2>      
+          <h2>{$data2[1][$i]}</h2>      
             <p><br>";
             
             //未加入該景點      
-            if($row['additem']==0)             
-              echo "<a href='view.php?additem={$row['dnum']}'>add</a>";   //顯示"add"按鈕
+            if($data3[$i]==0)             
+              echo "<a href='/EasyMVC/newview/addbutton?={$row['dnum']}'>add</a>";   //顯示"add"按鈕
             //已加入該景點
            else
               echo "<a>已加</a>" ;                                        //顯示"已加"按鈕
               
             //未去過該景點
-            if($row['gone']==0)                
-              echo "<a href='view.php?gone={$row['dnum']}'>gone</a></p>";  //顯示"gone"按鈕
+            if($data4[$i]==0)                
+              echo "<a href='/EasyMVC/newview/gonebutton?={$row['dnum']}'>gone</a></p>";  //顯示"gone"按鈕
             //已去過該景點
             else
               echo "<a>已選</a></p>" ;                                    //顯示"已選"按鈕

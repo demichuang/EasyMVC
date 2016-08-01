@@ -2,21 +2,54 @@
 
 class newviewController extends Controller {
     
-    
-	function newview(){
-	        $this->view("newview");
-	        
-	    }
-	    
-	function dstbutton(){
-			if(isset($_POST['taichung']))  
-	   $_SESSION["dst"]=0;       // 設$_SESSION["dst"]為0
-	   
+  //  
+// 	function newview(){
+// 	  $this->dstbutton();
+// 	 }
 	
-	// 點選"Tainan按鈕"  
-	if(isset($_POST['tainan']))     
-	   $_SESSION["dst"]=1;   
-		
+	// 點選地點按鈕，定義$_SESSION['dst']    
+	function newview(){
+	  if(isset($_POST['tainan'])) // 點選"Tainan按鈕"     
+	      $num=1;     
+	  if(isset($_POST['taichung']))                        
+	      $num=0;     
+	  $dst=$this->model("sqlcommand");   
+    $dst->dst($num);                  // 設定$_SESSION["dst"]
+    
+    $dstchoose =$this->model("sqlcommand");
+    $result =$dstchoose->showpicture();     // 取景點圖片
+    
+    // $addchoose =$this->model("sqlcommand");
+    // $result2 =$addchoose->showadd();         // add按鈕顯示
+    
+    // $gonechoose =$this->model("sqlcommand");
+    // $result3 =$gonechoose->showgone();     // 取景點圖片
+    
+
+  // 取每筆資料
+  
+  $array =array();    // 放景點號碼
+  $array2 =array();   // 放景點名稱
+  $array3 =array();   // 放add
+  $array4 =array();   // 放gone
+  
+  
+  while($row = mysqli_fetch_array($result[1])){
+    array_push($array,$row['dnum']);
+    array_push($array2,$row['dname']);
+    array_push($array3,$row['additem']);
+    array_push($array4,$row['gone']);
+    
+  }
+  // while($row = mysqli_fetch_array($result2)){
+  //   array_push($array3,$row['additem']);
+    
+  // }  while($row = mysqli_fetch_array($result3)){
+  //   array_push($array4,$row['gone']);
+    
+  // }
+  
+  $this->view("newview",$result[0],[$array,$array2],$array3,$array4);
 	}
 	
 	function seebutton(){
@@ -124,69 +157,7 @@ class newviewController extends Controller {
 	  
 	}
 	
-	
-	
-/*	
-	
-	function __construct(){
-	  
-	  // 如果點選"Taichung按鈕"
 
-    $dst =$this->model("sqlcommand");
-    $result =$dst->showpicture();
-    return $result;
-
-  // 取每筆資料
-//  while($row = mysqli_fetch_array($result)){
-//    echo "<figure class='effect-oscar  wowload fadeInUp' >";
-    
-    // 如果點選"Taichung按鈕"
-    if($_SESSION['dst']=="0")
-      //顯示Taichung景點圖片
-      
-      $this->view("view",0.$row['dnum']);
-      //echo "<img name ='face'src='images/portfolio/0{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
-    // 如果點選"Tainan按鈕"
-    else
-      $this->view("view",1.$row['dnum']);
-      
-      //顯示Tainan景點圖片
-     // echo "<img name ='face'src='images/portfolio/1{$row['dnum']}.jpg' width='500' height='300'alt='img01'/>";
-    
-    //顯示景點名字
-    echo "<figcaption>
-          <h2>{$row['dname']}</h2>      
-            <p><br>";
-            
-            //未加入該景點      
-            if($row['additem']==0)             
-              echo "<a href='view.php?additem={$row['dnum']}'>add</a>";   //顯示"add"按鈕
-            //已加入該景點
-           else
-              echo "<a>已加</a>" ;                                        //顯示"已加"按鈕
-              
-            //未去過該景點
-            if($row['gone']==0)                
-              echo "<a href='view.php?gone={$row['dnum']}'>gone</a></p>";  //顯示"gone"按鈕
-            //已去過該景點
-            else
-              echo "<a>已選</a></p>" ;                                    //顯示"已選"按鈕
-            
-            //尚未點選"see more按鈕" 
-            if($_SESSION["see"]==0)     
-              echo"<p><a href='view.php?id={$row['dnum']}'>see more</a>";   //顯示"see more"按鈕
-            //已點選過"see more按鈕"
-            else
-              //判斷哪一景點按了see more按鈕
-              if($row['dnum']==$_SESSION['see'])
-                echo"<p><a href='view.php?id=0'>close</a>";                   //顯示"close"按鈕
-              //其餘景點  
-              else
-                echo"<p><a href='view.php?id={$row['dnum']}'>see more</a>";   
-                  
-    echo    "</p>
-          </figcaption>
-        </figure>";
 	  
 	  
 	  
@@ -194,9 +165,9 @@ class newviewController extends Controller {
 	  
 	  
 	  
-	}
 	
-*/
+	
+
 
 }
 ?>

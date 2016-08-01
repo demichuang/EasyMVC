@@ -4,10 +4,10 @@ class contactController extends Controller {
     
   // 到forum頁    
   function contact(){
-    if (!empty($_POST['name']) && !empty($_POST['word']))
+    if (!empty($_POST['name']) && !empty($_POST['word'])) //如果名字和留言都不是空值
     {    
-      $name = $_POST['name'];   
-      $word = $_POST['word'];
+      $name = $_POST['name'];     // $name設為接收到的name            
+      $word = $_POST['word'];     // $word設為接收到的留言
       
       date_default_timezone_set('Asia/Taipei');   //時間設定:Taipei時間 
       $now = date("Y-m-d H:i:s");                 //時間設定(年、月、日 時、分、秒)
@@ -17,7 +17,7 @@ class contactController extends Controller {
     }
     
     $showword=$this->model("sqlcommand");
-    $numrows=$showword->showword();     // 從talk資料表最新資料開始取
+    $numrows=$showword->showword();       // 從talk資料表最新資料開始取
     
     $array =array();  // 放留言者名稱
     $array2=array();  // 放留言時間

@@ -64,6 +64,69 @@ class sqlcommand{
     
     
 //View    
+    
+    // 設$_SESSION["dst"]
+    function dst($num){
+        $_SESSION["dst"]=$num;
+    }
+    
+    // 取景點圖片
+    function showpicture(){
+        if($_SESSION['dst']=="0")   
+            $cmd="SELECT * FROM file
+                  WHERE username='{$_SESSION['userName']}'";
+        else                              
+            $cmd="SELECT * FROM file2
+                  WHERE username='{$_SESSION['userName']}'";
+        $db =new connect_db();
+        $result=$db->connect($cmd);
+        $num = mysqli_num_rows($result);
+        
+        return [$num,$result];
+    }
+    
+    // 按鈕顯示 add 或 已加 
+    function showadd($additem){
+        if($_SESSION['dst']=="0")   
+            $cmd="SELECT * FROM file 
+                WHERE additem=1 
+                AND username='{$_SESSION['userName']}'";
+        else                              
+            $cmd="SELECT * FROM file2 
+                WHERE additem=1 
+                AND username='{$_SESSION['userName']}'";
+        
+    	
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
+        //$row = mysqli_fetch_array($result);
+        return $result;
+        
+    }
+    
+        // 按鈕顯示 gone 或 已選 
+    function showgone($gone){
+        if($_SESSION['dst']=="0")   
+            $cmd="SELECT * FROM file 
+                WHERE gone=1 
+                AND username='{$_SESSION['userName']}'";
+        else                              
+            $cmd="SELECT * FROM file2 
+                WHERE gone=1 
+                AND username='{$_SESSION['userName']}'";
+        
+    	
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+        // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
+        //$row = mysqli_fetch_array($result);
+        return $result;
+        
+    }
+    
+    
+    
     function cadd($additem){
         
         
@@ -198,26 +261,11 @@ else{
  return;
     }
 
-    function showpicture(){
-    if($_SESSION['dst']=="0")   
-        $cmd="SELECT * FROM file
-            WHERE username='{$_SESSION['userName']}'";
-        
-    else                              
-  //從file2資料表內取與username對應的資料
-  $cmd="SELECT * FROM file2
-        WHERE username='{$_SESSION['userName']}'";    
-    
-    
-    
-    $db =new connect_db();
-    $result=$db->connect($cmd);
-    return $result;
     
     
     
     
-}
+
 
     
     
@@ -236,7 +284,6 @@ else{
                WHERE d='$num'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-    	
     	$row=mysqli_fetch_array($result);
     	return $row;
     }
@@ -254,7 +301,8 @@ else{
            
         $db=new connect_db();
         $result=$db->connect($cmd);
-        return $result;
+        $num = mysqli_num_rows($result);
+        return [$num,$result];          // 回傳資料筆數、資料
     }
 
     // 取user的規劃資料
@@ -267,9 +315,9 @@ else{
         $row=mysqli_fetch_array($result);
         
         if($_SESSION['ds']=="0")
-            return $row['edit'];
+            return $row['edit'];    // 回傳Taichung規劃資料
         else
-            return $row['edit2'];
+            return $row['edit2'];   // 回傳Tainan規劃資料
     }
     
     // 顯示規劃在編輯頁面
@@ -285,7 +333,7 @@ else{
             
         else
             $edit = ereg_replace("<br />", "", $row['edit2']);
-        return $edit;
+        return $edit;           // 回傳規劃資料
     }
     
     // 規劃寫入資料庫
@@ -302,17 +350,20 @@ else{
 
     // 取消景點選取
     function deletedb($dname){
-     if($_SESSION['ds']=="0")
-        $cmd="UPDATE file SET additem=0
-              WHERE dname='$dname' 
-              AND username='{$_SESSION['userName']}'";
-
-    if($_SESSION['ds']=="1")
-        $cmd="UPDATE file2 SET additem=0
-              WHERE dname='$dname' 
-              AND username='{$_SESSION['userName']}'";
-    $db=new connect_db();
-    $db->connect($cmd);
+        // echo $_SESSION['ds'];
+        // exit;
+        if($_SESSION['ds']=="0")
+            $cmd="UPDATE file SET additem=0
+                  WHERE dname='$dname' 
+                  AND username='{$_SESSION['userName']}'";
+    
+        if($_SESSION['ds']=="1")
+            $cmd="UPDATE file2 SET additem=0
+                  WHERE dname='$dname' 
+                  AND username='{$_SESSION['userName']}'";
+        $db=new connect_db();
+        $db->connect($cmd);
+        return;
     }
 
 
@@ -359,12 +410,12 @@ else{
     }
     
     // 取消已去過的景點
-    function noclick($dname){
+    function noclick($getgone){
         $cmd="UPDATE file SET gone=0
-              WHERE dname='$dname' 
+              WHERE dname='$getgone' 
               AND username='{$_SESSION['userName']}'";
         $cmd2="UPDATE file2 SET gone=0
-               WHERE dname='$dname' 
+               WHERE dname='$getgone' 
                AND username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $db->connect($cmd);

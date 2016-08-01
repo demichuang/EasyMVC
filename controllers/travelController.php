@@ -10,24 +10,8 @@ class travelController extends Controller{
       $getword=$this->model("sqlcommand");
       $getword->getedit($word);                               // 將編輯資料寫入資料庫
   }
-   
-  $dst=$this->model("sqlcommand");   
-  $row=$dst->ds(0);                 // 初始頁面設為Taichung畫面
   
-  $lat = $row['lat'];        // 取Taichung經度
-  $lng = $row['lng'];        // 取Taichung緯度
-  $mark = $row['mark'];      // 取Taichung標記
-  
-  $myedit=$this->model("sqlcommand");
-  $row2 =$myedit->showedit();          // 取編輯資料
-  
-  $mylist=$this->model("sqlcommand");   
-  $result =$mylist->mylist();          // 取user選取的景點
-   
-  while($row =mysqli_fetch_array($result))
-  {
-   $this->view("travel",[$lat,$lng,$mark],$row['dname'],$row2);  // 到travel頁
-  }
+  $this->dsbutton();  
  }
           
  // 點選地點按鈕
@@ -50,10 +34,13 @@ class travelController extends Controller{
   $mylist=$this->model("sqlcommand");   
   $result =$mylist->mylist();          // 取user選取的景點
 
-  while($row =mysqli_fetch_array($result))
+  $array=array();                      // 放選取的景點
+  
+  while($row =mysqli_fetch_array($result[1])) // 將選取的景點放入array
   {
-   $this->view("travel",[$lat,$lng,$mark],$row['dname'],$row2);  // 到travel頁
+   array_push($array,$row['dname']);
   }
+  $this->view("travel",[$lat,$lng,$mark],$result[0],$array,$row2);  // 到travel頁
  }
 
  // 到編輯規劃頁面
@@ -66,8 +53,10 @@ class travelController extends Controller{
 
  // 刪除景點
  function mydelete($dname){
+   echo $dname;
+   exit;
   $deletedst=$this->model("sqlcommand");
-  $row=$deletedst->deletedb($dname);      
+  $deletedst->deletedb($dname);      
   
   $this->view("/EasyMVC/travel/travel");  // 到travel頁
  }

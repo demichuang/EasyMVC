@@ -113,7 +113,6 @@ async defer></script>
 
 
 <!-- List Starts -->
-
 <div class='overlay spacer'>
   <div class='container'>
 
@@ -125,15 +124,16 @@ async defer></script>
 
     <h3>Your list：</h3>
     <div class='row text-center'>
-<?php  
-/* 列出加入的景點名稱
-if(mysqli_num_rows($result)>0){
-
-    while($data2[0])
-    {*/
-        echo "<h4>{$data2}";                                     // 印出景點名稱    
-        echo "<a href='/EasyMVC/travel/mydelete($data2)'>delete</a>"; // 刪除景點      
-        echo "</h4>";?>       
+    
+    <?php 
+      for($i=0; $i<$data2; $i++)
+      {
+        echo "<h4>{$data3[$i]}";                                          // 印出景點名稱    
+        echo "<a href='/EasyMVC/travel/mydelete($data3[$i])'>delete</a>"; // 刪除景點      
+        echo "</h4>";       
+      }
+    ?>
+    
     </div>
   </div>
 </div>
@@ -147,7 +147,7 @@ if(mysqli_num_rows($result)>0){
       <div class="item  animated bounceInLeft row">
         <div  class="col-xs-10">
             
-            <h4><?php echo $data3;?></h4>                       <!-- 印出計畫 -->
+            <h4><?php echo $data4;?></h4>                       <!-- 印出計畫 -->
             <h5><a href='/EasyMVC/travel/goedit'>edit</a><h5>   <!-- 編輯計畫 -->
             
          </div>
@@ -158,7 +158,6 @@ if(mysqli_num_rows($result)>0){
 
 
 <!-- Map Starts -->
-
   <div class="col-sm-6 partners  wowload fadeInRight">
     <!--  map button -->
     <div id="floating-panel">
@@ -169,7 +168,6 @@ if(mysqli_num_rows($result)>0){
     <div id="map" style="width: ˊ600px; height: 400px"></div>
   </div>
 </div>
-
 <!-- Map Ends --> 
 
 

@@ -59,7 +59,7 @@
       for($i=0; $i<$data[0]; $i++)
       {
         echo "<h4>{$data2[$i]}";                                        // 印出景點名
-        echo "<a href='/EasyMVC/achievement/deletemygone($data2[$i])'>no</a>";   // 刪除景點
+        echo "<a href='/EasyMVC/achievement/deletemygone?gone=$data2[$i]'>no</a>";   // 刪除景點
         echo "</h4>";       
       }
     ?>
@@ -87,7 +87,7 @@
       for($i=0; $i<$data[1]; $i++) 
       {
         echo "<h4>{$data3[$i]}";                                     // 印出景點名
-        echo "<a href='/EasyMVC/achievement/deletemygone($data3[$i])'>no</a>";   // 刪除景點
+        echo "<a href='/EasyMVC/achievement/deletemygone?gone=$data3[$i]'>no</a>";   // 刪除景點
         echo "</h4>";       
       }
     ?>

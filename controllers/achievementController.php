@@ -9,15 +9,28 @@ class achievementController extends Controller {
         $dstnum2=$this->model("sqlcommand");
         $tain=$dstnum2->getnum2();              // 取Tainan資料
         
-        $this->view("achievement",[$taic[0],$taic[1]],[$tain[0],$tain[1]]); // 到achievement頁    
+        $array =array();  // 放Taichung景點名稱
+        $array2=array();  // 放Tainan景點名稱
+        
+        while($row=mysqli_fetch_array($taic[1]))    // Taichung景點寫進array      
+        {
+            array_push($array,$row['dname']);
+        }
+        
+        while($row=mysqli_fetch_array($tain[1]))    // Tainan景點寫進array
+        {
+            array_push($array2,$row['dname']);
+        }
+        
+        $this->view("achievement",[$taic[0],$tain[0]],$array,$array2,[$taic[2],$tain[2]]); // 到achievement頁    
     }
     
     // 點選no按鈕
-    function mygone($dnum){
+    function deletemygone($dname){
         $myno=$this->model("sqlcommand");
-        $taic=$myno->noclick();
+        $myno->noclick($dname);
         
-        $this->view("achievement"); 
+        $this->view("/EasyMVC/achievement/achievement"); 
     }
 }
 

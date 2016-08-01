@@ -63,7 +63,7 @@
     <ul>
       
     <?php
-    for ($i = 0; $i < $data; $i++)
+    for ($i=0; $i<$data; $i++)
       {
         echo "<li text-align: center>
               <p><h5><strong>{$data2[$i]}</strong>";      // 印出名字

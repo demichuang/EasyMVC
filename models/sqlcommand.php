@@ -332,11 +332,10 @@ else{
         
         $row = mysqli_num_rows($result);
         $gone = mysqli_num_rows($result2);
-        $row1 =mysqli_fetch_array($result2);
         
         $gonenumber = round(($gone/$row)*100,2);      
         
-        return [$row1,$gonenumber];
+        return [$gone,$result2,$gonenumber];     // 回傳Taichung去過的景點數、資料、%
     }
     
     // 取得Tainan 去過景點和計算%
@@ -353,20 +352,19 @@ else{
         
         $row=mysqli_num_rows($result);
         $gone = mysqli_num_rows($result2);
-        $row1 = mysqli_fetch_array($result2);
         
         $gonenumber = round(($gone/$row)*100,2);
         
-        return [$row1,$gonenumber];
+        return [$gone,$result2,$gonenumber];     // 回傳Tainan去過的景點數、資料、%
     }
     
     // 取消已去過的景點
-    function noclick(){
+    function noclick($dname){
         $cmd="UPDATE file SET gone=0
-              WHERE dname='{$_GET['gone']}' 
+              WHERE dname='$dname' 
               AND username='{$_SESSION['userName']}'";
         $cmd2="UPDATE file2 SET gone=0
-               WHERE dname='{$_GET['gone']}' 
+               WHERE dname='$dname' 
                AND username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $db->connect($cmd);
@@ -386,13 +384,13 @@ else{
     
     // 顯示留言
     function showword(){
-    $cmd="SELECT * FROM talk ORDER BY num DESC";   //從talk資料表最新資料開始取
+    $cmd="SELECT * FROM talk ORDER BY num DESC";   
     $db=new connect_db();
     $result=$db->connect($cmd);
     
     $numwords = mysqli_num_rows($result);
         
-    return [$numwords,$result];
+    return [$numwords,$result];         // 回傳留言數、查詢結果
     }
 }
 

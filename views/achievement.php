@@ -54,18 +54,16 @@
 <div class='overlay spacer'>
   <div class='container'>
     <div class='row text-center'>
-        
-<?php
-// 取Taichung去過的景點          
-//if($gone>0){
-    // 取每筆資料
-    foreach($data[0] as $value)
-    {
-        echo "<h4>{$value}";                                     // 印出景點名
-        echo "<a href='travel_done.php?gone={$row['dname']}'>no</a>";   // 刪除景點
+    
+    <?php
+      for($i=0; $i<$data[0]; $i++)
+      {
+        echo "<h4>{$data2[$i]}";                                        // 印出景點名
+        echo "<a href='/EasyMVC/achievement/deletemygone($data2[$i])'>no</a>";   // 刪除景點
         echo "</h4>";       
-    }
-?>
+      }
+    ?>
+    
     </div>
   </div>
 </div>
@@ -74,7 +72,7 @@
 <div class='highlight-info'>
   <div class='container'>
     <div class='row text-center  wowload fadeInDownBig'> 
-      <h4>Taichung：complete <?php echo $data[1] ?>%</h4>
+      <h4>Taichung：complete <?php echo $data4[0] ?>%</h4>
     </div>
   </div>
 </div>
@@ -85,19 +83,15 @@
   <div class='container'>
     <div class='row text-center'>
 
-<?php
-
-// 取Tainan去過的景點 
-//if($gone2>0){ 
-    // 取每筆資料
-    
-   foreach($data2[0] as $value) 
-    {
-        echo "<h4>$value";                                     // 印出景點名
-        echo "<a href='/EasyMVC/travel/mydelete={$row['dname']}'>no</a>";   // 刪除景點
+    <?php
+      for($i=0; $i<$data[1]; $i++) 
+      {
+        echo "<h4>{$data3[$i]}";                                     // 印出景點名
+        echo "<a href='/EasyMVC/achievement/deletemygone($data3[$i])'>no</a>";   // 刪除景點
         echo "</h4>";       
-    }
+      }
     ?>
+    
     </div>
   </div>
 </div>
@@ -106,7 +100,7 @@
 <div class='highlight-info'>
   <div class='container'>
     <div class='row text-center  wowload fadeInDownBig'> 
-      <h4>Taichung：complete <?php echo $data2[1] ?>%</h4>
+      <h4>Taichung：complete <?php echo $data4[1] ?>%</h4>
     </div>
   </div>
 </div>

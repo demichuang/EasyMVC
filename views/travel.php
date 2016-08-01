@@ -129,7 +129,7 @@ async defer></script>
       for($i=0; $i<$data2; $i++)
       {
         echo "<h4>{$data3[$i]}";                                          // 印出景點名稱    
-        echo "<a href='/EasyMVC/travel/mydelete($data3[$i])'>delete</a>"; // 刪除景點      
+        echo "<a href='/EasyMVC/travel/mydelete?delete=$data3[$i]'>delete</a>"; // 刪除景點      
         echo "</h4>";       
       }
     ?>

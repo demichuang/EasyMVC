@@ -63,11 +63,28 @@ class sqlcommand{
     
     
     
-//View    
-    
+//View
     // 設$_SESSION["dst"]
     function dst($num){
         $_SESSION["dst"]=$num;
+    }
+    
+    // 設$_SESSION["id"]
+    function see($id){
+        $_SESSION["id"]=$id;
+    }
+
+    // 取景點資料
+    function seeclick($id){
+        $cmd= "SELECT * FROM dst
+               WHERE dnum ='$id' 
+               AND d=1";
+ 
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+    	$row =mysqli_fetch_array($result);
+    	
+    	return [$row['dname'],$row['dinfo']];  // 回傳景點名、景點資訊
     }
     
     // 取景點圖片
@@ -82,11 +99,41 @@ class sqlcommand{
         $result=$db->connect($cmd);
         $num = mysqli_num_rows($result);
         
-        return [$num,$result];
+        return [$num,$result];      // 回傳景點數、資料
+    }
+ 
+    // add按鈕改為已加
+    function addclick($additem){
+        $cmd="UPDATE file SET additem=1
+              WHERE dname='$additem' 
+              AND username='{$_SESSION['userName']}'";
+        $cmd2="UPDATE file2 SET additem=1
+               WHERE dname='$additem' 
+               AND username='{$_SESSION['userName']}'";
+    	
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+    	$result=$db->connect($cmd2);
     }
     
-    // 按鈕顯示 add 或 已加 
-    function showadd($additem){
+    // gone按鈕改為已選 
+    function goneclick($gone){
+        $cmd="UPDATE file SET gone=1
+              WHERE dname='$gone' 
+              AND username='{$_SESSION['userName']}'";
+        $cmd2="UPDATE file2 SET gone=1
+              WHERE dname='$gone' 
+              AND username='{$_SESSION['userName']}'";
+    	
+    	$db =new connect_db();
+    	$result=$db->connect($cmd);
+    	$result=$db->connect($cmd2);
+    }
+
+    
+    
+       /* 按鈕顯示 add 或 已加 
+   //function addclick($additem){
         if($_SESSION['dst']=="0")   
             $cmd="SELECT * FROM file 
                 WHERE additem=1 
@@ -106,7 +153,7 @@ class sqlcommand{
     }
     
         // 按鈕顯示 gone 或 已選 
-    function showgone($gone){
+    //function showgone($gone){
         if($_SESSION['dst']=="0")   
             $cmd="SELECT * FROM file 
                 WHERE gone=1 
@@ -127,7 +174,7 @@ class sqlcommand{
     
     
     
-    function cadd($additem){
+   // function cadd($additem){
         
         
         $cmd= "SELECT * FROM file 
@@ -141,21 +188,10 @@ class sqlcommand{
         return $row;
         
         
-    }
+    }*/
     
-    function caddupdate($additem){
-        
-        
-        $cmd= "UPDATE file SET additem=1
-                WHERE dnum='$additem' 
-                AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-        return;
-    }
-    
-    function nadd($additem){
+     
+ /*   // function nadd($additem){
         
         
         $cmd= "SELECT * FROM file2 
@@ -171,7 +207,7 @@ class sqlcommand{
         
     }
     
-    function naddupdate($additem){
+  //  function naddupdate($additem){
         
         
         $cmd= "UPDATE file2 SET additem=1
@@ -184,7 +220,7 @@ class sqlcommand{
     }
     
     
-    function cgone($gone){
+  // function cgone($gone){
         
         
         $cmd= "SELECT * FROM file
@@ -200,7 +236,7 @@ class sqlcommand{
         
     }
     
-    function cgoneupdate($gone){
+   // function cgoneupdate($gone){
         
         $cmd= "UPDATE file SET gone=1
               WHERE dnum='$gone' 
@@ -211,7 +247,7 @@ class sqlcommand{
  return;
     }
     
-    function ngone($gone){
+   // function ngone($gone){
         
         
         $cmd= "SELECT * FROM file2
@@ -225,41 +261,9 @@ class sqlcommand{
         return $row;
         
         
-    }
-    
-    function ngoneupdate($gone){
-        
-        $cmd= "UPDATE file2 SET gone=1
-              WHERE dnum='$gone' 
-              AND username='{$_SESSION['userName']}'";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
- return;
-    }
-    
+    }*/   
 
-    function see($id){
-        if($_SESSION['dst']=="0"){
-            $cmd= "SELECT * FROM dst
-                    WHERE dnum ='$id' 
-                    AND d=1";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-}
-// 如果點選"Tainan按鈕"
-else{
-  $cmd= "SELECT * FROM dst
-                    WHERE dnum ='$id' 
-                    AND d=1";
-    	
-    	$db =new connect_db();
-    	$result=$db->connect($cmd);
-}
-// 呼叫dst資料
- return;
-    }
+  
 
     
     
@@ -349,21 +353,16 @@ else{
     }
 
     // 取消景點選取
-    function deletedb($dname){
-        // echo $_SESSION['ds'];
-        // exit;
-        if($_SESSION['ds']=="0")
-            $cmd="UPDATE file SET additem=0
-                  WHERE dname='$dname' 
-                  AND username='{$_SESSION['userName']}'";
-    
-        if($_SESSION['ds']=="1")
-            $cmd="UPDATE file2 SET additem=0
-                  WHERE dname='$dname' 
-                  AND username='{$_SESSION['userName']}'";
+    function deletedb($del){
+        $cmd="UPDATE file SET additem=0
+              WHERE dname='$dname' 
+              AND username='{$_SESSION['userName']}'";
+        $cmd2="UPDATE file2 SET additem=0
+               WHERE dname='$dname' 
+               AND username='{$_SESSION['userName']}'";
         $db=new connect_db();
         $db->connect($cmd);
-        return;
+        $db->connect($cmd2);
     }
 
 

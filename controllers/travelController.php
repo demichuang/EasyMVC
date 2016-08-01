@@ -52,15 +52,14 @@ class travelController extends Controller{
  }
 
  // 刪除景點
- function mydelete($dname){
-   echo $dname;
-   exit;
-  $deletedst=$this->model("sqlcommand");
-  $deletedst->deletedb($dname);      
+ function mydelete(){
+  $del = $_GET['delete']; 
   
-  $this->view("/EasyMVC/travel/travel");  // 到travel頁
+  $deletedst=$this->model("sqlcommand");
+  $deletedst->deletedb($del);      
+  
+  header("location:/EasyMVC/travel/travel");  // 到travel頁
  }
- 
 }
 
 ?>

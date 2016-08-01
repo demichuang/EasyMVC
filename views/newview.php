@@ -1,120 +1,3 @@
-<?php
-/*header('Content-type: text/html; charset=utf-8');   //使用萬用字元碼utf-8
-include_once("mysql.php");                          // 連結資料庫new
-$Table_file="file";     // 取file資料表(影響：add按鈕，gone按鈕)
-$Table_dst="dst";       // 取dst資料表(影響：see more按鈕)
-$Table_file2="file2";   // 取file2資料表(影響：add按鈕，gone按鈕)
-
-session_start();    // 啟動session(使用：$_SESSION['userName']，$_SESSION["see"]，$_SESSION["dst"])
-*/
-/*
-// 點選"see more按鈕" 
-if(isset($_GET['see']))               
-  $_SESSION["see"]=$_GET['see'];  // 設$_SESSION["see"]為$_GET['see']
-// 已點選過"see more按鈕" 
-else
-  $_SESSION["see"]=0;            // 設$_SESSION["see"]為0
- 
-
-// 點選"Taichung按鈕"     
-if(isset($_POST['taichung']))  
-   $_SESSION["dst"]=0;       // 設$_SESSION["dst"]為0
-   
-
-// 點選"Tainan按鈕"  
-if(isset($_POST['tainan']))     
-   $_SESSION["dst"]=1;       // 設$_SESSION["dst"]為1
-
-
-// 點選"add按鈕"
-if(($_GET['additem'])!="")    
-{  
-  // 如果點選"Taichung按鈕"
-  if($_SESSION['dst']=="0")
-  {
-    // 從file資料表內取和景點編號($_GET['additem'])及username對應的資料
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file 
-                                WHERE dnum='{$_GET['additem']}' 
-                                AND username='{$_SESSION['userName']}'");
-    $row = mysqli_fetch_array($result);
-     
-    // 如果景點未被使用者加入
-    if($row['additem']=="0")
-    {
-        // 將file的additem欄位更改為1(加入景點)
-        $sql = "UPDATE $Table_file SET additem=1
-                WHERE dnum='{$_GET['additem']}' 
-                AND username='{$_SESSION['userName']}'";
-        mysqli_query($conn,$sql);
-    }
-  }
-  // 如果點選"Tainan按鈕"
-  else
-  {
-    // 從file2資料表內和景點編號($_GET['additem'])及username對應的資料
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file2
-                                WHERE dnum='{$_GET['additem']}' 
-                                AND username='{$_SESSION['userName']}'");
-    $row = mysqli_fetch_array($result);
-     
-    // 如果景點未被使用者加入
-    if($row['additem']=="0"){
-          
-        // 將file2的additem欄位更改為1(加入景點)
-        $sql = "UPDATE $Table_file2 SET additem=1
-                WHERE dnum='{$_GET['additem']}' 
-                AND username='{$_SESSION['userName']}'";
-        mysqli_query($conn,$sql);
-    }
-  }
-}
-
-
-// 點選"gone按鈕"
-if(($_GET['gone'])!="")        
-{
-  // 如果點選"Taichung按鈕"
-  if($_SESSION['dst']=="0")
-  {
-    // 從file資料表內取和景點編號($_GET['gone'])及username對應的資料
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file
-                                WHERE dnum='{$_GET['gone']}' 
-                                AND username='{$_SESSION['userName']}'");
-    $row = mysqli_fetch_array($result);
-    
-    // 如果景點未被使用者標示去過  
-    if($row['gone']=="0")
-    {
-      // 將file的gone欄位更改為1(標示景點已去)
-      $sql = "UPDATE $Table_file SET gone=1
-              WHERE dnum='{$_GET['gone']}' 
-              AND username='{$_SESSION['userName']}'";
-      mysqli_query($conn,$sql);
-    }
-  }
-  // 如果點選"Tainan按鈕"
-  else
-  {
-    // 從file2資料表內取和景點編號($_GET['gone'])及username對應的資料
-    $result=mysqli_query($conn,"SELECT * FROM $Table_file2 
-                                WHERE dnum='{$_GET['gone']}' 
-                                AND username='{$_SESSION['userName']}'");
-    $row = mysqli_fetch_array($result);
-    
-    // 如果景點未被使用者標示去過 
-    if($row['gone']=="0")
-    {
-      // 將file2的gone欄位更改為1(標示景點已去)
-      $sql = "UPDATE $Table_file2 SET gone=1
-              WHERE dnum='{$_GET['gone']}' 
-              AND username='{$_SESSION['userName']}'";
-      mysqli_query($conn,$sql);
-    }
-  }
-}*/
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,22 +75,23 @@ else
   $result=mysqli_query($conn,"SELECT * FROM $Table_dst
                               WHERE dnum ='{$_GET['id']}'
                               AND d=2"); 
+*/
 
-
-// 呼叫dst資料
+if ($_SESSION['id'] ==1){
 echo "<div class='highlight-info'>
         <div class='container'>
             <div class='row text-center  wowload fadeInDownBig'> ";
     // 取每筆資料 
 //    while($row =mysqli_fetch_array($result))
  //   {
-        echo "<h3>$data</h3>";    // 印出景點名      
-        echo "<h4>$data2</h4>";    // 印出景點資訊
+        echo "<h3>$data3[0]</h3>";    // 印出景點名      
+        echo "<h4>$data3[1]</h4>";    // 印出景點資訊
         echo "<h3></h3>";       
 //    }
     echo    "</div>
           </div>
-        </div>";*/
+        </div>";
+}
 ?>
 <!-- See Button click Ends -->
 
@@ -247,30 +131,30 @@ else
             <p><br>";
             
             //未加入該景點      
-            if($data3[$i]==0)             
-              echo "<a href='/EasyMVC/newview/addbutton?={$row['dnum']}'>add</a>";   //顯示"add"按鈕
+            if($data2[2][$i]==0)             
+              echo "<a href='/EasyMVC/newview/addbutton?additem={$data2[1][$i]}'>add</a>";    //顯示"add"按鈕
             //已加入該景點
            else
-              echo "<a>已加</a>" ;                                        //顯示"已加"按鈕
+              echo "<a>已加</a>" ;                                                            //顯示"已加"按鈕
               
             //未去過該景點
-            if($data4[$i]==0)                
-              echo "<a href='/EasyMVC/newview/gonebutton?={$row['dnum']}'>gone</a></p>";  //顯示"gone"按鈕
+            if($data2[3][$i]==0)                
+              echo "<a href='/EasyMVC/newview/gonebutton?gone={$data2[1][$i]}'>gone</a></p>"; //顯示"gone"按鈕
             //已去過該景點
             else
-              echo "<a>已選</a></p>" ;                                    //顯示"已選"按鈕
+              echo "<a>已選</a></p>" ;                                                        //顯示"已選"按鈕
             
             //尚未點選"see more按鈕" 
-            if($_SESSION["see"]==0)     
-              echo"<p><a href='view.php?id={$row['dnum']}'>see more</a>";   //顯示"see more"按鈕
+            if($_SESSION["id"]==0)     
+              echo"<p><a href='EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   //顯示"see more"按鈕
             //已點選過"see more按鈕"
             else
               //判斷哪一景點按了see more按鈕
-              if($row['dnum']==$_SESSION['see'])
-                echo"<p><a href='view.php?id=0'>close</a>";                   //顯示"close"按鈕
+              if($data2[0][$i]==$_SESSION['id'])
+                echo"<p><a href='EasyMVC/newview/newview?id=0'>close</a>";                   //顯示"close"按鈕
               //其餘景點  
               else
-                echo"<p><a href='view.php?id={$row['dnum']}'>see more</a>";   
+                echo"<p><a href='EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   
                   
     echo    "</p>
           </figcaption>

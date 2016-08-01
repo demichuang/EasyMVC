@@ -25,19 +25,15 @@ class achievementController extends Controller {
         $this->view("achievement",[$taic[0],$tain[0]],$array,$array2,[$taic[2],$tain[2]]); // 到achievement頁    
     }
     
-    
     // 點選no按鈕
     function deletemygone(){
-        // echo $_SESSION['ds'];
-        // exit;
-        $getgone = $_GET['gone'];
+        $getgone = $_GET['gone'];       
         
         $myno=$this->model("sqlcommand");
-        $myno->noclick($getgone);
-        header("location:/EasyMVC/achievement/achievement");
-        //$this->view("achievement"); 
+        $myno->noclick($getgone);           // 取消已去過的景點
+        
+        header("location:/EasyMVC/achievement/achievement");    // 到achievement頁
     }
-    
 }
 
 ?>

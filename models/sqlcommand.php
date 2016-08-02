@@ -37,7 +37,8 @@ class sqlcommand{
               WHERE `username`='$newuser'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-        $num=mysqli_num_rows($result);
+        $num =mysqli_num_rows($result);
+        $row =mysqli_fetch_array($result);
         
     	return [$row,$num]; // 回傳結果
     }

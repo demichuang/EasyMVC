@@ -79,45 +79,34 @@
   {
     echo "<figure class='effect-oscar  wowload fadeInUp' >";
     
-    // 如果點選"Taichung按鈕"
-    if($data4[0]==0)
-      //顯示Taichung景點圖片
-      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
-    // 如果點選"Tainan按鈕"
-    else
-      //顯示Tainan景點圖片
-      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/1{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
+    if($data4[0]==0)                    // 如果點選"Taichung按鈕"
+      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";   //顯示Taichung景點圖片
+    else                                // 如果點選"Tainan按鈕"
+      echo "<img name ='face'src='/EasyMVC/views/images/portfolio/1{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";   //顯示Tainan景點圖片
     
-    //顯示景點名字
-    echo "<figcaption>
-          <h2>{$data2[1][$i]}</h2>      
-            <p><br>";
-            
-            //未加入該景點      
-            if($data2[2][$i]==0)             
+    echo "<figcaption>";
+    echo "<h2>{$data2[1][$i]}</h2>";    //顯示景點名字      
+    echo "<p><br>";
+                 
+            if($data2[2][$i]==0)        //未加入該景點             
               echo "<a href='/EasyMVC/newview/addbutton?additem={$data2[1][$i]}'>add</a>";    //顯示"add"按鈕
-            //已加入該景點
-            else
+            else                        //已加入該景點
               echo "<a>已加</a>" ;                                                            //顯示"已加"按鈕
               
-            //未去過該景點
-            if($data2[3][$i]==0)                
+            if($data2[3][$i]==0)        //未去過該景點             
               echo "<a href='/EasyMVC/newview/gonebutton?gone={$data2[1][$i]}'>gone</a></p>"; //顯示"gone"按鈕
-            //已去過該景點
-            else
+            else                        //已去過該景點
               echo "<a>已選</a></p>" ;                                                        //顯示"已選"按鈕
             
-            //尚未點選"see more按鈕" 
-            if($data4[1]==0)     
-              echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   //顯示"see more"按鈕
-            //已點選過"see more按鈕"
-            else
-              //判斷哪一景點按了see more按鈕
-              if($data2[0][$i]==$data4[1])
+             
+            if($data4[1]==0)            //尚未點選"see more按鈕"   
+              echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";    //顯示"see more"按鈕
+            else                        //已點選過"see more按鈕"
+              if($data2[0][$i]==$data4[1])  //判斷哪一景點按了see more按鈕
                 echo"<p><a href='/EasyMVC/newview/newview?id=0'>close</a>";                   //顯示"close"按鈕
               //其餘景點  
               else
-                echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   
+                echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";  //顯示"see more"按鈕   
                  
     echo    "</p>
           </figcaption>

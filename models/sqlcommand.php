@@ -2,7 +2,6 @@
 
 class sqlcommand{
 //首頁
-    
     // 判斷$_SESSION["userName"]是否存在 
     function haveuser(){
         if (isset($_SESSION["userName"]))       
@@ -10,7 +9,7 @@ class sqlcommand{
         else
             $sUserName = "Guest";               
 
-        return $sUserName;              // 回傳$sUserName 
+        return $sUserName;                  // 回傳$sUserName 
     }
     
     // 定義$_SESSION["userName"] 
@@ -37,7 +36,8 @@ class sqlcommand{
               WHERE `username`='$newuser'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-        $num=mysqli_num_rows($result);
+        $num =mysqli_num_rows($result);
+        $row =mysqli_fetch_array($result); 
         
     	return [$row,$num]; // 回傳結果
     }

@@ -4,12 +4,12 @@ class travelController extends Controller{
  
  // 到travel頁    
  function travel(){
-  if(!empty($_POST['word']))  // 如果有編輯資料
+  if(!empty($_POST['word']))                      // 如果有編輯資料
   {
-      $word = ereg_replace("\n", "<br />\n", $_POST['word']); // 將換行轉成資料庫存取的換行符號
-      $this->model("sqlcommand")->getedit($word);             // 將編輯資料寫入資料庫
+      $word = ereg_replace("\n", "<br />\n", $_POST['word']);         // 將換行轉成資料庫存取的換行符號
+      $this->model("sqlcommand")->getedit($word);                     // 將編輯資料寫入資料庫
   }
-  $this->dsbutton();          // 引入dsbutton fnuction
+  $this->dsbutton();                              // 引入dsbutton fnuction
  }
           
  // 點選地點按鈕

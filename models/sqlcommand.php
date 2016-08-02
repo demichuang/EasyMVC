@@ -37,7 +37,6 @@ class sqlcommand{
               WHERE `username`='$newuser'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-    	$row = mysqli_fetch_array($result); 
         $num=mysqli_num_rows($result);
         
     	return [$row,$num]; // 回傳結果
@@ -122,7 +121,20 @@ class sqlcommand{
         $result=$db->connect($cmd);
         $num = mysqli_num_rows($result);
         
-        return [$num,$result];      // 回傳景點數、資料
+        $array =array();                // 放景點號碼
+        $array2 =array();               // 放景點名稱
+        $array3 =array();               // 放已點選add的景點名
+        $array4 =array();               // 放已點選gone的景點名
+      
+        while($row = mysqli_fetch_array($result))       // 將資料寫進array
+        {
+          array_push($array,$row['dnum']);
+          array_push($array2,$row['dname']);
+          array_push($array3,$row['additem']);
+          array_push($array4,$row['gone']);
+        }
+        
+        return [$num,$array,$array2,$array3,$array4];   // 回傳景點數、資料
     }
  
     // add按鈕改為已加
@@ -184,7 +196,14 @@ class sqlcommand{
         $result=$db->connect($cmd);
         $num = mysqli_num_rows($result);
         
-        return [$num,$result];          // 回傳資料筆數、資料
+        $array=array();                             // 放選取的景點
+  
+        while($row =mysqli_fetch_array($result))    // 將選取的景點放入array
+        {
+         array_push($array,$row['dname']);
+        }
+        
+        return [$num,$array];          // 回傳資料筆數、資料
     }
 
     // 取user的規劃資料
@@ -261,9 +280,15 @@ class sqlcommand{
         $row = mysqli_num_rows($result);
         $gone = mysqli_num_rows($result2);
         
-        $gonenumber = round(($gone/$row)*100,2);      
+        $gonenumber = round(($gone/$row)*100,2);
         
-        return [$gone,$result2,$gonenumber];     // 回傳Taichung去過的景點數、資料、%
+        $array =array();                            // 放Taichung景點名稱
+        while($row2=mysqli_fetch_array($result2))   // Taichung景點寫進array      
+        {
+            array_push($array,$row2['dname']);
+        }
+        
+        return [$gone,$array,$gonenumber];          // 回傳Taichung去過的景點數、資料、%
     }
     
     // 取得Tainan 去過景點和計算%
@@ -282,7 +307,13 @@ class sqlcommand{
         
         $gonenumber = round(($gone/$row)*100,2);
         
-        return [$gone,$result2,$gonenumber];     // 回傳Tainan去過的景點數、資料、%
+        $array =array();                            // 放Tainan景點名稱
+        while($row2=mysqli_fetch_array($result2))   // Tainan景點寫進array      
+        {
+            array_push($array,$row2['dname']);
+        }
+        
+        return [$gone,$array,$gonenumber];          // 回傳Tainan去過的景點數、資料、%
     }
     
     // 取消已去過的景點
@@ -317,8 +348,19 @@ class sqlcommand{
         $db=new connect_db();
         $result=$db->connect($cmd);
         $numwords = mysqli_num_rows($result);
-            
-        return [$numwords,$result];         // 回傳留言數、查詢結果
+        
+        $array =array();            // 放留言者名稱
+        $array2=array();            // 放留言時間
+        $array3=array();            // 放留言內容
+    
+        while($row=mysqli_fetch_array($result))           // 留言紀錄寫進array
+        {
+            array_push($array,$row['name']);
+            array_push($array2,$row['time']);
+            array_push($array3,$row['word']);
+        }
+        
+        return [$numwords,$array,$array2,$array3];        // 回傳留言數、查詢結果
     }
 }
 

@@ -28,13 +28,7 @@ class travelController extends Controller{
   $row2 =$this->model("sqlcommand")->showedit();    // 取編輯資料
   $result =$this->model("sqlcommand")->mylist();    // 取user選取的景點
 
-  $array=array();            // 放選取的景點
-  
-  while($row =mysqli_fetch_array($result[1]))                       // 將選取的景點放入array
-  {
-   array_push($array,$row['dname']);
-  }
-  $this->view("travel",[$lat,$lng,$mark],$result[0],$array,$row2);  // 到travel頁(data1:地圖經緯度、data2:選取的景點數、data3:選取的景點array、data4:規劃資料)
+  $this->view("travel",[$lat,$lng,$mark],$result[0],$result[1],$row2);  // 到travel頁(data1:地圖經緯度、data2:選取的景點數、data3:選取的景點array、data4:規劃資料)
  }
 
  // 到編輯規劃頁面

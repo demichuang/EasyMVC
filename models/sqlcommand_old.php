@@ -37,10 +37,8 @@ class sqlcommand{
               WHERE `username`='$newuser'";
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-    	$row = mysqli_fetch_array($result); 
-        $num=mysqli_num_rows($result);
         
-    	return [$row,$num]; // 回傳結果
+    	return $result; // 回傳結果
     }
     
     // 新增新使用者的資料

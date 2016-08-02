@@ -46,11 +46,10 @@ class indexController extends Controller {
         $newpassword=$_POST['newtxtPassword'];  //  得輸入的新userpassword
  
     	$result =$this->model("sqlcommand")->signupcheck($newuser); // 取user資料表與新輸入的username相符的資料
-    	$row = mysqli_fetch_array($result);                         // 取每筆資料
         
-    	if (mysqli_num_rows($result)>0)                                 // 如果有與輸入的username相符的資料                        
+    	if (($result[1])>0)                                 // 如果有與輸入的username相符的資料                        
     	{
-    	  if($row['userpassword']==$newpassword)                            // 如果輸入的userpassword也相符
+    	  if($result[0]['userpassword']==$newpassword)                            // 如果輸入的userpassword也相符
     	  { 
             $sUserName=$this->model("sqlcommand")->sessionuser("Guest");    // $_SESSION["userName"]設為"Guest"
       	    $this->view("index",$sUserName,3);                              // 回到登入頁，傳data2=3值，顯示本來就是會員了

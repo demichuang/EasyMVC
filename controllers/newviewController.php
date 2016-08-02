@@ -52,13 +52,5 @@ class newviewController extends Controller {
 	  header("location:/EasyMVC/newview/newview");    // 到 newview 頁
 	}
 	
-	// 點選 see按鈕    
-	function seebutton(){
-    $id=$_GET['id'];
-	  $this->model("sqlcommand")->seeclick($gone);
-	  header("location:/EasyMVC/newview/newview");    // 到 newview 頁
-	}
-	
-	
 }
 ?>

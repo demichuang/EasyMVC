@@ -65,7 +65,7 @@
     	  echo " <em>({$data3[$i]})</em></h5></p>";           // 印出時間
     		echo "<div class='text-center  wowload fadeInUp'>
     		        <p><h5>{$data4[$i]}</h5></p>";              // 印出留言
-    		echo "  </div>
+    		echo "</div>
     		      </li>";                                     
       }
     ?>    

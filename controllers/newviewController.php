@@ -22,27 +22,9 @@ class newviewController extends Controller {
 	   
     $sessiondst=$this->model("sqlcommand")->dst($dstnum);         // 設定$_SESSION["dst"]
     $result =$this->model("sqlcommand")->showpicture();           // 取景點圖片
-<<<<<<< HEAD
 
     $this->view("newview",$result[0],[$result[1],$result[2],$result[3],$result[4]],[$seerow[0],$seerow[1]],[$sessiondst,$sessionid]); // 到 newview 頁(data1:景點數、data2:圖片景點資料、data3:景點資訊、data4:地點景點編號)
 	}
-=======
-    
-    $array =array();                // 放景點號碼
-    $array2 =array();               // 放景點名稱
-    $array3 =array();               // 放已點選add的景點名
-    $array4 =array();               // 放已點選gone的景點名
-  
-    while($row = mysqli_fetch_array($result[1]))                  //將資料寫進array
-    {
-      array_push($array,$row['dnum']);
-      array_push($array2,$row['dname']);
-      array_push($array3,$row['additem']);
-      array_push($array4,$row['gone']);
-    }
-    $this->view("newview",$result[0],[$array,$array2,$array3,$array4],[$seerow[0],$seerow[1]],[$sessiondst,$sessionid]); // 到 newview 頁(data1:景點數、data2:圖片景點資料、data3:景點資訊、data4:地點景點編號)
-  }
->>>>>>> 8d7778076cc0ed3737475996a55deb43cfb72dbf
 
   // 點選 add按鈕    
   function addbutton(){
@@ -54,15 +36,9 @@ class newviewController extends Controller {
   // 點選 gone按鈕    
   function gonebutton(){
     $gone=$_GET['gone'];
-<<<<<<< HEAD
 	  $this->model("sqlcommand")->goneclick($gone);
 	  header("location:/EasyMVC/newview/newview");    // 到 newview 頁
 	}
-=======
-    $this->model("sqlcommand")->goneclick($gone);
-    header("location:/EasyMVC/newview/newview");    // 到 newview 頁
-   }
->>>>>>> 8d7778076cc0ed3737475996a55deb43cfb72dbf
 	
 }
 ?>

@@ -47,15 +47,8 @@ class newviewController extends Controller {
     
 	// 點選 gone按鈕    
 	function gonebutton(){
-    $gone=$_GET['gone'];
+    	  $gone=$_GET['gone'];
 	  $this->model("sqlcommand")->goneclick($gone);
-	  header("location:/EasyMVC/newview/newview");    // 到 newview 頁
-	}
-	
-	// 點選 see按鈕    
-	function seebutton(){
-    $id=$_GET['id'];
-	  $this->model("sqlcommand")->seeclick($gone);
 	  header("location:/EasyMVC/newview/newview");    // 到 newview 頁
 	}
 	

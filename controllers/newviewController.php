@@ -36,7 +36,7 @@ class newviewController extends Controller {
       array_push($array4,$row['gone']);
     }
     $this->view("newview",$result[0],[$array,$array2,$array3,$array4],[$seerow[0],$seerow[1]],[$sessiondst,$sessionid]); // 到 newview 頁(data1:景點數、data2:圖片景點資料、data3:景點資訊、data4:地點景點編號)
-	}
+  }
 
   // 點選 add按鈕    
   function addbutton(){

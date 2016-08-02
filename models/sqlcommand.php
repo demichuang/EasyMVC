@@ -55,23 +55,23 @@ class sqlcommand{
     	$result1=$db->connect($cmd1);
     
     	while($row = mysqli_fetch_array($result1))
-	    {
-	        $cmd2="INSERT `file`(`username`,`dnum`,`dname`,`additem`,`gone`)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-    	    $db->connect($cmd2);
-	    }
+	{
+            $cmd2="INSERT `file`(`username`,`dnum`,`dname`,`additem`,`gone`)
+                   VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+            $db->connect($cmd2);
+	}
 	    
 	    
-	    $cmd3="SELECT * FROM `dst` 
-	           WHERE `d`='2'";
+	$cmd3="SELECT * FROM `dst` 
+	       WHERE `d`='2'";
     	$result2=$db->connect($cmd3);
     
     	while($row = mysqli_fetch_array($result2))
-	    {
-	        $cmd4="INSERT `file2`(`username`,`dnum`,`dname`,`additem`,`gone`)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-        	$db->connect($cmd4);
-	    } 
+	{
+	    $cmd4="INSERT `file2`(`username`,`dnum`,`dname`,`additem`,`gone`)
+	           VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+       	    $db->connect($cmd4);
+	 } 
 	  
     }
     

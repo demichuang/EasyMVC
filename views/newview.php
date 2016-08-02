@@ -14,9 +14,7 @@
 <link rel="shortcut icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/EasyMVC/views/assets/style.css">
-
 <script type="text/javascript" src="jquery.min.js"></script>
-
 </head>
 
 
@@ -28,23 +26,18 @@
   <div class="container">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
       <div class="container">
-        
-        <!-- 顯示使用者名稱 -->
-        <a class="navbar-brand active"></a>
+        <div class="navbar-collapse  collapse">
+          <ul class="nav navbar-nav navbar-right">
             
-            <div class="navbar-collapse  collapse">
-              <ul class="nav navbar-nav navbar-right">
-                
-                 <li ><a href="../index">Home</a></li>
-                 <li class="active"><a href="/EasyMVC/newview/newview">View</a></li>
-                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
-                 <li ><a href="/EasyMVC/achievement/achievement">My Achievement</a></li>
-                 <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
-                 <li ><a href="../index">Logout</a></li>
-               
-              </ul>
-            </div>
-
+             <li ><a href="../index">Home</a></li>
+             <li class="active"><a href="/EasyMVC/newview/newview">View</a></li>
+             <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+             <li ><a href="/EasyMVC/achievement/achievement">My Achievement</a></li>
+             <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
+             <li ><a href="../index">Logout</a></li>
+           
+          </ul>
+        </div>
       </div>
      </div>
    </div>
@@ -61,7 +54,6 @@
 
 
 <!-- See Button click  Starts -->
-
 <div class='highlight-info'>
   <div class='container'>
     <div class='row text-center  wowload fadeInDownBig'> 
@@ -75,8 +67,6 @@
     </div>
   </div>
 </div>
-
-
 <!-- See Button click Ends -->
 
 
@@ -90,7 +80,7 @@
     echo "<figure class='effect-oscar  wowload fadeInUp' >";
     
     // 如果點選"Taichung按鈕"
-    if($_SESSION['dst']==0)
+    if($data4[0]==0)
       //顯示Taichung景點圖片
       echo "<img name ='face'src='/EasyMVC/views/images/portfolio/0{$data2[0][$i]}.jpg' width='500' height='300'alt='img01'/>";
     // 如果點選"Tainan按鈕"
@@ -118,17 +108,17 @@
               echo "<a>已選</a></p>" ;                                                        //顯示"已選"按鈕
             
             //尚未點選"see more按鈕" 
-            if($_SESSION["id"]==0)     
+            if($data4[1]==0)     
               echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   //顯示"see more"按鈕
             //已點選過"see more按鈕"
             else
               //判斷哪一景點按了see more按鈕
-              if($data2[0][$i]==$_SESSION['id'])
+              if($data2[0][$i]==$data4[1])
                 echo"<p><a href='/EasyMVC/newview/newview?id=0'>close</a>";                   //顯示"close"按鈕
               //其餘景點  
               else
                 echo"<p><a href='/EasyMVC/newview/newview?id={$data2[0][$i]}'>see more</a>";   
-                  
+                 
     echo    "</p>
           </figcaption>
         </figure>";

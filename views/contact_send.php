@@ -13,9 +13,7 @@
 <link rel="stylesheet" href="/EasyMVC/views/assets/gallery/blueimp-gallery.min.css">
 <link rel="shortcut icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/EasyMVC/views/images/favicon.ico" type="image/x-icon">
-
 <link rel="stylesheet" href="/EasyMVC/views/assets/style.css">
-
 </head>
 
 
@@ -27,23 +25,18 @@
   <div class="container">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
       <div class="container">
-        
-        <!-- 顯示使用者名稱 -->
-        <a class="navbar-brand active"></a>
+        <div class="navbar-collapse  collapse">
+          <ul class="nav navbar-nav navbar-right">
             
-            <div class="navbar-collapse  collapse">
-              <ul class="nav navbar-nav navbar-right">
-                
-                 <li ><a href="../index">Home</a></li>
-                 <li ><a href="/EasyMVC/newview/newviewp">View</a></li>
-                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
-                 <li ><a href="/EasyMVC/achievement/achievement">My Ahievement</a></li>
-                 <li class="active"><a href="/EasyMVC/contact/contact">Forum</a></li>
-                 <li ><a href="../index">Logout</a></li>
-               
-              </ul>
-            </div>
-            
+             <li ><a href="../index">Home</a></li>
+             <li ><a href="/EasyMVC/newview/newviewp">View</a></li>
+             <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+             <li ><a href="/EasyMVC/achievement/achievement">My Ahievement</a></li>
+             <li class="active"><a href="/EasyMVC/contact/contact">Forum</a></li>
+             <li ><a href="../index">Logout</a></li>
+           
+          </ul>
+        </div>
       </div>
      </div>
    </div>

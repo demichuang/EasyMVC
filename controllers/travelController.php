@@ -7,10 +7,9 @@ class travelController extends Controller{
   if(!empty($_POST['word']))  // 如果有編輯資料
   {
       $word = ereg_replace("\n", "<br />\n", $_POST['word']); // 將換行轉成資料庫存取的換行符號
-      $getword=$this->model("sqlcommand");
-      $getword->getedit($word);                               // 將編輯資料寫入資料庫
+      $this->model("sqlcommand")->getedit($word);             // 將編輯資料寫入資料庫
   }
-  $this->dsbutton();       // 引入dsbutton fnuction
+  $this->dsbutton();          // 引入dsbutton fnuction
  }
           
  // 點選地點按鈕
@@ -20,20 +19,16 @@ class travelController extends Controller{
   else                       // 點選Tainan按鈕
    $num=0;
   
-  $dst=$this->model("sqlcommand");   
-  $row=$dst->ds($num);              // 取地點經緯度
+  $row=$this->model("sqlcommand")->ds($num);       // 取地點經緯度
   
-  $lat = $row['lat'];     // 取經度
-  $lng = $row['lng'];     // 取緯度
-  $mark = $row['mark'];   // 取標記
+  $lat = $row['lat'];        // 取經度
+  $lng = $row['lng'];        // 取緯度
+  $mark = $row['mark'];      // 取標記
   
-  $myedit=$this->model("sqlcommand");
-  $row2 =$myedit->showedit();          // 取編輯資料
-  
-  $mylist=$this->model("sqlcommand");   
-  $result =$mylist->mylist();          // 取user選取的景點
+  $row2 =$this->model("sqlcommand")->showedit();    // 取編輯資料
+  $result =$this->model("sqlcommand")->mylist();    // 取user選取的景點
 
-  $array=array();                      // 放選取的景點
+  $array=array();            // 放選取的景點
   
   while($row =mysqli_fetch_array($result[1]))                       // 將選取的景點放入array
   {
@@ -44,20 +39,16 @@ class travelController extends Controller{
 
  // 到編輯規劃頁面
  function goedit(){
-  $echoedit=$this->model("sqlcommand");
-  $edit =$echoedit->myedit();           // 取編輯資料
-  
-  $this->view("travel_edit",$edit);     // 到travel頁(data:規劃資料)
+  $edit =$this->model("sqlcommand")->myedit();     // 取編輯資料
+  $this->view("travel_edit",$edit);                // 到travel頁(data:規劃資料)
  }
 
  // 刪除景點
  function mydelete(){
   $del = $_GET['delete']; 
+  $this->model("sqlcommand")->deletedb($del);      
   
-  $deletedst=$this->model("sqlcommand");
-  $deletedst->deletedb($del);      
-  
-  header("location:/EasyMVC/travel/travel");  // 到travel頁
+  header("location:/EasyMVC/travel/travel");       // 到travel頁
  }
 }
 

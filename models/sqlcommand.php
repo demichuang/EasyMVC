@@ -78,13 +78,15 @@ class sqlcommand{
     
 //View
     // 設$_SESSION["dst"]
-    function dst($num){
-        $_SESSION["dst"]=$num;
+    function dst($dstnum){
+        $_SESSION["dst"]=$dstnum;
+        return $_SESSION["dst"];
     }
     
     // 設$_SESSION["id"]
     function see($id){
         $_SESSION["id"]=$id;
+        return $_SESSION["id"];
     }
 
     // 取景點資料
@@ -100,10 +102,9 @@ class sqlcommand{
  
     	$db =new connect_db();
     	$result=$db->connect($cmd);
-    	$num = mysqli_num_rows($result);
     	$row =mysqli_fetch_array($result);
     	
-    	return [$row['dname'],$row['dinfo'],$num];  // 回傳景點名、景點資訊
+    	return [$row['dname'],$row['dinfo']];  // 回傳景點名、景點資訊
     }
     
     // 取景點圖片

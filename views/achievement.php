@@ -25,23 +25,18 @@
   <div class="container">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
       <div class="container">
-          
-        <!-- 顯示使用者名稱 -->
-        <a class="navbar-brand active"></a>
-           
-            <div class="navbar-collapse  collapse">
-              <ul class="nav navbar-nav navbar-right">
-                
-                 <li ><a href="../index">Home</a></li>
-                 <li ><a href="/EasyMVC/newview/newview">View</a></li>
-                 <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
-                 <li class="active"><a href="/EasyMVC/achievement/achievement">My Ahievement</a></li>
-                 <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
-                 <li ><a href="../index">Logout</a></li>
-               
-              </ul>
-            </div>
+        <div class="navbar-collapse  collapse">
+          <ul class="nav navbar-nav navbar-right">
             
+             <li ><a href="../index">Home</a></li>
+             <li ><a href="/EasyMVC/newview/newview">View</a></li>
+             <li ><a href="/EasyMVC/travel/travel">My Travel</a></li>
+             <li class="active"><a href="/EasyMVC/achievement/achievement">My Ahievement</a></li>
+             <li ><a href="/EasyMVC/contact/contact">Forum</a></li>
+             <li ><a href="../index">Logout</a></li>
+           
+          </ul>
+        </div>
       </div>
      </div>
    </div>
